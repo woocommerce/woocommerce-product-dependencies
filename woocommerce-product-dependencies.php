@@ -86,7 +86,7 @@ if ( is_woocommerce_active() ) {
 		            			}
 		            	?>
 			        </select>
-			        <?php echo '<img class="help_tip" data-tip=' . __('Restrict access to this product based on their ownership or purchase of the items added here.', 'woo-tied') . ' src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
+			        <?php echo '<img class="help_tip" data-tip="' . __('Restrict access to this product based on the ownership or purchase of the items added here.', 'woo-tied') . '" src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
 		    	</p>
 		    	<p class="form-field">
 					<label><?php _e( 'Dependency Type', 'woo-tied' ); ?>
@@ -190,7 +190,7 @@ if ( is_woocommerce_active() ) {
 							$product_titles[] = '"' . get_the_title( $id ) . '"';
 						}
 
-						$woocommerce->add_error( sprintf( __( 'Access to "%2$s" is restricted only to verified owners of %1$s.', 'woo-tied' ) . ( $dependency_type == 3 ? ' ' . __( 'If you wish to purchase your %1$s now, please add it to the cart first in order to obtain access to this item.', 'woo-tied' ) : '' ), str_replace( ', ' . $product_titles[ count($product_titles) - 1 ], ' ' . __('or', 'woo-tied' ) . ' ' . $product_titles[ count($product_titles) - 1 ], implode( ', ', $product_titles ) ), get_the_title( $item_id ) ) );
+						$woocommerce->add_error( sprintf( __( 'Access to "%2$s" is restricted only to verified owners of %1$s.', 'woo-tied' ) . ( $dependency_type == 3 ? ' ' . __('Alternatively, ', 'woo-tied') . __( 'access to this item will be granted after adding a %1$s to the cart.', 'woo-tied' ) : '' ), str_replace( ', ' . $product_titles[ count($product_titles) - 1 ], ' ' . __('or', 'woo-tied' ) . ' ' . $product_titles[ count($product_titles) - 1 ], implode( ', ', $product_titles ) ), get_the_title( $item_id ) ) );
 						return false;
 
 					}
@@ -209,11 +209,11 @@ if ( is_woocommerce_active() ) {
 					if ( $dependency_type == 1 )
 						$msg = __( 'Access to "%2$s" is restricted only to verified owners of %1$s. The verification is automatic and simply requires you to be <a href="%3$s">'.'logged in'.'</a>.', 'woo-tied' );
 					elseif ( $dependency_type == 2 )
-						$msg = __( '"%2$s" can be purchased only with %1$s.', 'woo-tied' );
+						$msg = __( '"%2$s" can be purchased only with %1$s.', 'woo-tied' ) . ' ' . __('Note that ', 'woo-tied');
 					else
-						$msg = __( '"%2$s" requires the purchase of %1$s. Ownership can be verified by simply <a href="%3$s">'.'logging in'.'</a>.', 'woo-tied' );
+						$msg = __( '"%2$s" requires the purchase of %1$s. Ownership can be verified by simply <a href="%3$s">'.'logging in'.'</a>.', 'woo-tied' ) . ' ' . __('Alternatively, ', 'woo-tied');
 
-					$woocommerce->add_error( sprintf( $msg . ( $dependency_type == 2 || $dependency_type == 3 ? ' ' . __( 'If you wish to purchase your %1$s now, please add it to the cart first in order to obtain access to this item.', 'woo-tied' ) : '' ), str_replace( ', ' . $product_titles[ count($product_titles) - 1 ], ' ' . __('or', 'woo-tied' ) . ' ' . $product_titles[ count($product_titles) - 1 ], implode( ', ', $product_titles ) ), get_the_title( $item_id ), wp_login_url() ) );
+					$woocommerce->add_error( sprintf( $msg . ( $dependency_type == 2 || $dependency_type == 3 ? __( 'access to this item will be granted after adding a %1$s to the cart.', 'woo-tied' ) : '' ), str_replace( ', ' . $product_titles[ count($product_titles) - 1 ], ' ' . __('or', 'woo-tied' ) . ' ' . $product_titles[ count($product_titles) - 1 ], implode( ', ', $product_titles ) ), get_the_title( $item_id ), wp_login_url() ) );
 
 					return false;
 				}

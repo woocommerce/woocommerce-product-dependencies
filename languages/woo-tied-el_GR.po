@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Tied Products v0.1\n"
+"Project-Id-Version: WooCommerce Product Dependencies v1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-09-21 12:20:41+0000\n"
+"PO-Revision-Date: 2012-10-16 19:51:49+0000\n"
 "Last-Translator: manu <manu@atmizoo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,88 +19,101 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: woo-includes/class-woothemes-plugin-updater.php:147
-#@ woothemes
-msgid "WooThemes Updates"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:167
-#@ woothemes
-msgid "WooThemes Plugin Updater"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:174
-#@ woothemes
-msgid "WooThemes Username"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:178
-#@ woothemes
-msgid "WooThemes Password"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:187
-#@ woothemes
-msgid "Login"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:238
-#@ woothemes
-msgid "Switch WooThemes Account"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:240
-#, php-format
-#@ woothemes
-msgid "You are currently logged in as %1$s. To switch to a different WooThemes account, please fill in the login details below."
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:243
-#@ woothemes
-msgid "Update your Plugins"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:250
-#@ woothemes
-msgid "Login Error"
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:252
-#@ woothemes
-msgid "The login details supplied are invalid. Please try again."
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:262
-#@ woothemes
-msgid "Enable WooThemes Plugin Updates."
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:264
-#, php-format
-#@ woothemes
-msgid "Please <a href=\"%1$s\">login</a> to enable automatic plugin updates."
-msgstr ""
-
-#: woo-includes/class-woothemes-plugin-updater.php:277
-#@ woothemes
-msgid "Hide This Message"
-msgstr ""
-
-#: woocommerce-tied-products.php:119
-#, php-format
-#@ woo-tied
-msgid "Access to \"%2$s\" is restricted only to verified owners of %1$s. If you have purchased a %1$s from one of our distributors, please contact us for verification. If you intend to purchase your %1$s now, please add it to the cart first in order to unlock this item."
-msgstr "Το προϊόν \"%2$s\" είναι διαθέσιμο για αγορά μόνο μαζί με το %1$s, ή και ανεξάρτητα για όσους είναι ήδη κάτοχοι. Αν έχεις αγοράσει το %1$s από κάποιο συνεργαζόμενο διανομέα ή κατάστημα και θέλεις να προμηθευτείς αυτό το προϊόν, επικοινώνησε μαζί μας για επιβεβαίωση."
-
-#: woocommerce-tied-products.php:132
+#: woocommerce-product-dependencies.php:210
 #, php-format
 #@ woo-tied
 msgid "Access to \"%2$s\" is restricted only to verified owners of %1$s. The verification is automatic and simply requires you to be <a href=\"%3$s\">logged in</a>."
-msgstr "Το προϊόν \"%2$s\" είναι διαθέσιμο για αγορά μόνο μαζί με το %1$s, ή και ανεξάρτητα για όσους είναι ήδη κάτοχοι. Αν είσαι ήδη κάτοχος, η πρόσβαση σε αυτό το προϊόν θα ενεργοποιηθεί μόλις <a href=\"%3$s\">συνδεθείς</a>."
+msgstr "Το προϊόν \"%2$s\" είναι διαθέσιμο για αγορά μόνο από κατόχους του %1$s. Αν είσαι ήδη κάτοχος, η πρόσβαση σε αυτό το προϊόν θα ενεργοποιηθεί μόλις <a href=\"%3$s\">συνδεθείς</a>."
 
-#: woocommerce-tied-products.php:119
-#: woocommerce-tied-products.php:132
+#: woocommerce-product-dependencies.php:193
+#: woocommerce-product-dependencies.php:216
 #@ woo-tied
 msgid "or"
 msgstr "ή"
+
+#: update/update.php:65
+#@ default
+msgid "An Unexpected HTTP Error occurred during the API request.</p> <p><a href=\"?\" onclick=\"document.location.reload(); return false;\">Try again</a>"
+msgstr ""
+
+#: update/update.php:70
+#@ default
+msgid "An unknown error occurred"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:52
+#@ woo-tied
+msgid "Dependencies"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:72
+#@ woo-tied
+msgid "Product Dependencies"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:92
+#@ woo-tied
+msgid "Dependency Type"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:95
+#@ woo-tied
+msgid "Ownership"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:96
+#@ woo-tied
+msgid "Purchase"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:97
+#@ woo-tied
+msgid "Either"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:193
+#, php-format
+#@ woo-tied
+msgid "Access to \"%2$s\" is restricted only to verified owners of %1$s."
+msgstr "Το προϊόν \"%2$s\" είναι διαθέσιμο για αγορά μόνο από κατόχους του %1$s."
+
+#: woocommerce-product-dependencies.php:212
+#, php-format
+#@ woo-tied
+msgid "\"%2$s\" can be purchased only with %1$s."
+msgstr "Το προϊόν \"%2$s\" είναι διαθέσιμο για αγορά μόνο σε συνδυασμό με το %1$s."
+
+#: woocommerce-product-dependencies.php:214
+#, php-format
+#@ woo-tied
+msgid "\"%2$s\" requires the purchase of %1$s. Ownership can be verified by simply <a href=\"%3$s\">logging in</a>."
+msgstr "Η αγορά του \"%2$s\" είναι δυνατή μόνο σε συνδυασμό με το %1$s. Αν είσαι ήδη κάτοχος, η πρόσβαση σε αυτό το προϊόν θα ενεργοποιηθεί μόλις <a href=\"%3$s\">συνδεθείς</a>."
+
+#: woocommerce-product-dependencies.php:74
+#@ woo-tied
+msgid "Search for products&hellip;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:89
+#@ woo-tied
+msgid "Restrict access to this product based on their ownership or purchase of the items added here."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:193
+#: woocommerce-product-dependencies.php:214
+#@ woo-tied
+msgid "Alternatively, "
+msgstr "Διαφορετικά, "
+
+#: woocommerce-product-dependencies.php:212
+#@ woo-tied
+msgid "Note that "
+msgstr ""
+
+#: woocommerce-product-dependencies.php:193
+#: woocommerce-product-dependencies.php:216
+#, php-format
+#@ woo-tied
+msgid "access to this item will be granted after adding a %1$s to the cart."
+msgstr "το προϊόν αυτό μπορεί να αγοραστεί μόνο αν στο καλάθι προστεθεί ένα %1$s."
 

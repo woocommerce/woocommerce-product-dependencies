@@ -71,7 +71,7 @@ if ( is_woocommerce_active() ) {
 				<p class="form-field">
 					<label><?php _e( 'Product Dependencies', 'woo-tied' ); ?>
 					</label>
-		            <select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e('Select one or more compatibility classes&hellip; ', 'woo-tied'); ?>" class="ajax_chosen_select_products">
+		            <select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e('Search for products&hellip;', 'woo-tied'); ?>" class="ajax_chosen_select_products">
 			        	<?php
 			        		if ( $tied_products ) 
 			        			foreach ( $tied_products as $item_id ) {
@@ -86,7 +86,7 @@ if ( is_woocommerce_active() ) {
 		            			}
 		            	?>
 			        </select>
-			        <?php echo '<img class="help_tip" data-tip=' . __('Compatibility classes can be used to group products or variations that are compatible to each other.', 'woo-tied') . ' src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
+			        <?php echo '<img class="help_tip" data-tip=' . __('Restrict access to this product based on their ownership or purchase of the items added here.', 'woo-tied') . ' src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
 		    	</p>
 		    	<p class="form-field">
 					<label><?php _e( 'Dependency Type', 'woo-tied' ); ?>

@@ -2,9 +2,9 @@
 
 /*
 Plugin Name: WooCommerce Product Dependencies
-Plugin URI: http://www.somewherewarm.net/
-Description: Woocommerce extension for restricting access to products, depending on the ownership or purchase of other items.
-Version: 1.0
+Plugin URI: http://www.somewherewarm.net/apps/woocommerce-product-dependencies
+Description: WooCommerce extension that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
+Version: 1.1
 Author: SomewhereWarm
 Author URI: http://www.somewherewarm.net/
 */

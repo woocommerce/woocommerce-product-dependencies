@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Product Dependencies
 Plugin URI: http://www.somewherewarm.net/apps/woocommerce-product-dependencies
 Description: WooCommerce extension that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
-Version: 1.1
+Version: 1.01
 Author: SomewhereWarm
 Author URI: http://www.somewherewarm.net/
 */
@@ -49,12 +49,12 @@ if ( is_woocommerce_active() ) {
 
 		// Write panel tab
 		function woo_tied_products_write_panel_tab() {
-			echo '<li class="show_if_tied tied_products_tab related_product_options"><a href="#tied_products_data">'.__('Dependencies', 'woo-tied').'</a></li>';
+			echo '<li class="show_if_tied tied_products_tab related_product_options linked_product_options"><a href="#tied_products_data">'.__('Dependencies', 'woo-tied').'</a></li>';
 		}
 
 
 		// Back-end meta boxes
-		function woo_tied_products_write_panel() { 
+		function woo_tied_products_write_panel() {
 
 			global $woocommerce, $post;
 
@@ -73,7 +73,7 @@ if ( is_woocommerce_active() ) {
 					</label>
 		            <select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e('Search for products&hellip;', 'woo-tied'); ?>" class="ajax_chosen_select_products">
 			        	<?php
-			        		if ( $tied_products ) 
+			        		if ( $tied_products )
 			        			foreach ( $tied_products as $item_id ) {
 
 									$title 	= get_the_title( $item_id );
@@ -86,7 +86,7 @@ if ( is_woocommerce_active() ) {
 		            			}
 		            	?>
 			        </select>
-			        <?php echo '<img class="help_tip" data-tip="' . __('Restrict access to this product based on the ownership or purchase of the items added here.', 'woo-tied') . '" src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
+			        <?php echo '<img class="help_tip" style="width:16px; height:16px;" data-tip="' . __('Restrict access to this product based on the ownership or purchase of the items added here.', 'woo-tied') . '" src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
 		    	</p>
 		    	<p class="form-field">
 					<label><?php _e( 'Dependency Type', 'woo-tied' ); ?>
@@ -158,11 +158,11 @@ if ( is_woocommerce_active() ) {
 				if ( $dependency_type == 2 || $dependency_type == 3 ) {
 
 					$cart_contents = $woocommerce->cart->cart_contents;
-		
+
 					foreach( $cart_contents as $cart_item ) {
-		
+
 						$product_id = $cart_item['product_id'];
-		
+
 						if ( in_array( $product_id, $tied_product_ids ) )
 							return true;
 					}

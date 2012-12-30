@@ -4,10 +4,25 @@
 Plugin Name: WooCommerce Product Dependencies
 Plugin URI: http://www.somewherewarm.net/apps/woocommerce-product-dependencies
 Description: WooCommerce extension that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
-Version: 1.01
+Version: 1.02
 Author: SomewhereWarm
 Author URI: http://www.somewherewarm.net/
 */
+
+/**
+ * Functions used by plugins
+ */
+if ( ! class_exists( 'WC_Dependencies' ) )
+	require_once 'class-wc-dependencies.php';
+
+/**
+ * WC Detection
+ */
+if ( ! function_exists( 'is_woocommerce_active' ) ) {
+	function is_woocommerce_active() {
+		return WC_Dependencies::woocommerce_active_check();
+	}
+}
 
 if ( is_woocommerce_active() ) {
 

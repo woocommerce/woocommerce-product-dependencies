@@ -1,4 +1,7 @@
 *** WooCommerce Product Dependencies ***
 
+2012.12.29 - version 1.02
+ * Fix - WC Detection.
+
 2012.12.29 - version 1.01
  * Tweak - Styling support for WooCommerce v2 write-panels.

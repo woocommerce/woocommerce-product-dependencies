@@ -1,6 +1,7 @@
 === WooCommerce Product Dependencies ===
 
 Contributors: SomewhereWarm
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=psyx@somewherewarm.net&item_name=Donation+for+WooCommerce+Product+Dependencies
 Tags: woocommerce, products, dependencies, prerequisite
 Requires at least: 3.3.2
 Tested up to: 3.8
@@ -20,6 +21,8 @@ Features:
 * Streamlined admin interface – prerequisite products are entered in a dedicated Dependencies tab.
 * Support for multiple product dependencies.
 * Support for ‘ownership’, ‘purchase’ and ‘ownership/purchase’ dependency types.
+
+Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/franticpsyx/woocommerce-product-dependencies/).
 
 == Installation ==
 

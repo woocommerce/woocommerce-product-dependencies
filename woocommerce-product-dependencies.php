@@ -3,8 +3,8 @@
 /*
 Plugin Name: WooCommerce Product Dependencies
 Plugin URI: http://www.somewherewarm.net/apps/woocommerce-product-dependencies
-Description: WooCommerce extension that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
-Version: 1.02
+Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products.
+Version: 1.0.3
 Author: SomewhereWarm
 Author URI: http://www.somewherewarm.net/
 */
@@ -29,14 +29,6 @@ if ( is_woocommerce_active() ) {
 	class WC_Tied_Products {
 
 		public function __construct() {
-
-			if ( ! class_exists( 'WpPluginAutoUpdate' ) )
-				require_once ('update/update.php');
-
-			$wp_plugin_auto_update = new WpPluginAutoUpdate('http://www.somewherewarm.net/wp-plugin-updates/', 'stable', basename(dirname(__FILE__)));
-
-			add_filter('pre_set_site_transient_update_plugins', array($wp_plugin_auto_update, 'check_for_plugin_update'));
-			add_filter('plugins_api_result', array($wp_plugin_auto_update, 'plugins_api_call'), 10, 3);
 
 			add_action( 'plugins_loaded', array($this, 'woo_tied_plugins_loaded') );
 			add_action( 'init', array($this, 'woo_tied_init') );
@@ -123,7 +115,9 @@ if ( is_woocommerce_active() ) {
 
 			global $post;
 
-			if ( isset( $_POST['tied_products'] ) && ! empty( $_POST['tied_products'] ) ) {
+			if ( ! isset( $_POST['tied_products'] ) || empty( $_POST['tied_products'] ) ) {
+				delete_post_meta( $post_id, '_tied_products' );
+			} elseif ( isset( $_POST['tied_products'] ) && ! empty( $_POST['tied_products'] ) ) {
 				update_post_meta( $post_id, '_tied_products', $_POST['tied_products'] );
 			}
 

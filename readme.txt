@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=psyx@som
 Tags: woocommerce, products, dependencies, prerequisite
 Requires at least: 3.3.2
 Tested up to: 3.8
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,9 @@ The extension allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 1.0.4 =
+* Localization - Added Brazilian translation (robertopc)
+
 = 1.0.3 =
 * Fix - Saving bug
 
@@ -71,6 +74,6 @@ The extension allows you to select between 3 different dependency types:
 
 == Upgrade Notice ==
 
-= 1.0.3 =
-Addresses a dependencies saving bug.
+= 1.0.4 =
+Localization - Added Brazilian translation (robertopc)
 

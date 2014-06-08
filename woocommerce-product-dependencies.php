@@ -4,7 +4,7 @@
 Plugin Name: WooCommerce Product Dependencies
 Plugin URI: http://www.somewherewarm.net/apps/woocommerce-product-dependencies
 Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products.
-Version: 1.0.3
+Version: 1.0.4
 Author: franticpsyx
 Author URI: http://www.somewherewarm.net/
 */
@@ -93,7 +93,7 @@ if ( is_woocommerce_active() ) {
 		            			}
 		            	?>
 			        </select>
-			        <?php echo '<img class="help_tip" style="width:16px; height:16px;" data-tip="' . __('Restrict access to this product based on their ownership or purchase of the items added here.', 'woo-tied') . '" src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
+			        <?php echo '<img class="help_tip" style="width:16px; height:16px;" data-tip="' . __('Restrict access to this product based on the ownership or purchase of the items added here.', 'woo-tied') . '" src="' . $woocommerce->plugin_url() . '/assets/images/help.png" />';  ?>
 		    	</p>
 		    	<p class="form-field">
 					<label><?php _e( 'Dependency Type', 'woo-tied' ); ?>

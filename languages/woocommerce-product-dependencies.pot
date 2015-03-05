@@ -1,0 +1,113 @@
+# Copyright (C) 2015 franticpsyx
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Product Dependencies 1.0.5\n"
+"Report-Msgid-Bugs-To: http://www.somewherewarm.net/\n"
+"POT-Creation-Date: 2015-03-05 10:45:42+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
+
+#: woocommerce-product-dependencies.php:70
+msgid "Dependencies"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:114
+msgid "Product Dependencies"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:119
+#: woocommerce-product-dependencies.php:127
+msgid "Search for products&hellip;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:138
+msgid ""
+"Restrict access to this product based on the ownership or purchase of the "
+"items added here."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:142
+msgid "Dependency Type"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:145
+msgid "Ownership"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:146
+msgid "Purchase"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:147
+msgid "Either"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:267
+#: woocommerce-product-dependencies.php:293
+msgid " or &quot;%s&quot;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:269
+#: woocommerce-product-dependencies.php:295
+msgid "&quot;%s&quot;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:271
+#: woocommerce-product-dependencies.php:297
+msgid ", &quot;%s&quot;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:280
+msgid "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:282
+msgid ""
+"Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
+"Alternatively, access to this item will be granted after adding a %1$s to "
+"the cart."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:308
+msgid ""
+"Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
+"The verification is automatic and simply requires you to be <a "
+"href=\"%3$s\">logged in</a>."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:310
+msgid ""
+"&quot;%2$s&quot; can be purchased only in combination with %1$s. Access to "
+"this item will be granted after adding a %1$s to the cart."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:312
+msgid ""
+"&quot;%2$s&quot; requires the purchase of %1$s. Ownership can be verified "
+"by simply <a href=\"%3$s\">logging in</a>. Alternatively, access to this "
+"item will be granted after adding a %1$s to the cart."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Product Dependencies"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.somewherewarm.net/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Restrict access to WooCommerce products, depending on the ownership and/or "
+"purchase of other, prerequisite products."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "franticpsyx"
+msgstr ""

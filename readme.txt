@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=psyx@som
 Tags: woocommerce, products, dependencies, prerequisite, access, restrict, ownership, purchase, together
 Requires at least: 3.3.2
 Tested up to: 4.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,9 @@ The extension allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 1.0.6 =
+* Fix - PHP array_values warning.
+
 = 1.0.5 =
 * Fix - WC 2.3 support.
 
@@ -77,5 +80,5 @@ The extension allows you to select between 3 different dependency types:
 
 == Upgrade Notice ==
 
-= 1.0.5 =
-Added WC 2.3 support.
+= 1.0.6 =
+Fixes a PHP array_values warning.

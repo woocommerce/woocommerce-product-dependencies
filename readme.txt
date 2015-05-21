@@ -1,6 +1,6 @@
 === WooCommerce Product Dependencies ===
 
-Contributors: franticpsyx
+Contributors: franticpsyx, SomewhereWarm
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=psyx@somewherewarm.net&item_name=Donation+for+WooCommerce+Product+Dependencies
 Tags: woocommerce, products, dependencies, prerequisite, access, restrict, ownership, purchase, together
 Requires at least: 3.3.2

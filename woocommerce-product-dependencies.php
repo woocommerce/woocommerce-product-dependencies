@@ -15,7 +15,7 @@
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
-/**
+/*
  * WC Detection
  */
 
@@ -135,7 +135,13 @@ if ( is_woocommerce_active() ) {
 
 			    	}
 
-			        echo '<img class="help_tip" style="width:16px; height:16px;" data-tip="' . __( 'Restrict access to this product based on the ownership or purchase of the items added here.', 'woocommerce-product-dependencies') . '" src="' . WC()->plugin_url() . '/assets/images/help.png" />';
+			    	$tip = __( 'Restrict access to this product based on the ownership or purchase of the items added here.', 'woocommerce-product-dependencies' );
+
+			    	if ( function_exists( 'wc_help_tip' ) ) {
+			    		echo wc_help_tip( $tip );
+			    	} else {
+			        	echo '<img class="help_tip" style="width:16px; height:16px;" data-tip="' . $tip . '" src="' . WC()->plugin_url() . '/assets/images/help.png" />';
+			        }
 
 		    	?></p>
 		    	<p class="form-field">
@@ -200,11 +206,11 @@ if ( is_woocommerce_active() ) {
 					return false;
 				}
 			}
-
 		}
 
 		/**
 		 * Validate access.
+		 *
 		 * @param  boolean $add
 		 * @param  int     $item_id
 		 * @param  int     $quantity
@@ -224,28 +230,38 @@ if ( is_woocommerce_active() ) {
 		 */
 		public function woo_tied_evaluate_access( $item_id ) {
 
-			$tied_product_ids = get_post_meta( $item_id, '_tied_products', true );
+			$tied_product_ids = (array) get_post_meta( $item_id, '_tied_products', true );
 			$dependency_type  = absint( get_post_meta( $item_id, '_dependency_type', true ) );
+			$tied_products    = array();
 
-			if ( $tied_product_ids ) {
+			// Ensure dependencies exist and are purchasable.
+			if ( ! empty( $tied_product_ids ) ) {
+				foreach ( $tied_product_ids as $id ) {
+					$tied_product = wc_get_product( $id );
+					if ( $tied_product && $tied_product->is_purchasable() ) {
+						$tied_products[ $id ] = $tied_product;
+					}
+				}
+			}
 
-				$tied_product_ids = array_values( get_post_meta( $item_id, '_tied_products', true ) );
+			if ( ! empty( $tied_products ) ) {
 
-				// Check cart
+				$tied_product_ids = array_keys( $tied_products );
+
+				// Check cart.
 				if ( $dependency_type === 2 || $dependency_type === 3 ) {
 
 					$cart_contents = WC()->cart->cart_contents;
 
 					foreach ( $cart_contents as $cart_item ) {
-
 						$product_id = $cart_item[ 'product_id' ];
-
-						if ( in_array( $product_id, $tied_product_ids ) )
+						if ( in_array( $product_id, $tied_product_ids ) ) {
 							return true;
+						}
 					}
 				}
 
-				// Check ownership
+				// Check ownership.
 				if ( is_user_logged_in() && ( $dependency_type === 1 || $dependency_type === 3 ) ) {
 
 					global $current_user;
@@ -254,7 +270,6 @@ if ( is_woocommerce_active() ) {
 					$is_owner = false;
 
 					foreach ( $tied_product_ids as $id ) {
-
 						if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID, $id ) ) {
 							$is_owner = true;
 						}
@@ -291,10 +306,10 @@ if ( is_woocommerce_active() ) {
 					$product_titles = array();
 
 					foreach ( $tied_product_ids as $id ) {
-						if ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-							$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
-						} elseif ( $tied_product_ids[ 0 ] === $id ) {
+						if ( $tied_product_ids[ 0 ] === $id ) {
 							$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+						} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
+							$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
 						} else {
 							$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
 						}

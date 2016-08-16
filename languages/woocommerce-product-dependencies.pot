@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Product Dependencies 1.0.7\n"
 "Report-Msgid-Bugs-To: http://www.somewherewarm.net/\n"
-"POT-Creation-Date: 2016-08-16 10:01:04+00:00\n"
+"POT-Creation-Date: 2016-08-16 10:36:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,62 +32,62 @@ msgid ""
 "items added here."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:142
+#: woocommerce-product-dependencies.php:148
 msgid "Dependency Type"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:145
+#: woocommerce-product-dependencies.php:151
 msgid "Ownership"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:146
+#: woocommerce-product-dependencies.php:152
 msgid "Purchase"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:147
+#: woocommerce-product-dependencies.php:153
 msgid "Either"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:269
-#: woocommerce-product-dependencies.php:297
+#: woocommerce-product-dependencies.php:284
+#: woocommerce-product-dependencies.php:310
 msgid "&quot;%s&quot;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:271
-#: woocommerce-product-dependencies.php:295
+#: woocommerce-product-dependencies.php:286
+#: woocommerce-product-dependencies.php:312
 msgid " or &quot;%s&quot;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:273
-#: woocommerce-product-dependencies.php:299
+#: woocommerce-product-dependencies.php:288
+#: woocommerce-product-dependencies.php:314
 msgid ", &quot;%s&quot;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:282
+#: woocommerce-product-dependencies.php:297
 msgid "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:284
+#: woocommerce-product-dependencies.php:299
 msgid ""
 "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
 "Alternatively, access to this item will be granted after adding a %1$s to "
 "the cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:310
+#: woocommerce-product-dependencies.php:325
 msgid ""
 "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
 "The verification is automatic and simply requires you to be <a "
 "href=\"%3$s\">logged in</a>."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:312
+#: woocommerce-product-dependencies.php:327
 msgid ""
 "&quot;%2$s&quot; can be purchased only in combination with %1$s. Access to "
 "this item will be granted after adding a %1$s to the cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:314
+#: woocommerce-product-dependencies.php:329
 msgid ""
 "&quot;%2$s&quot; requires the purchase of %1$s. Ownership can be verified "
 "by simply <a href=\"%3$s\">logging in</a>. Alternatively, access to this "

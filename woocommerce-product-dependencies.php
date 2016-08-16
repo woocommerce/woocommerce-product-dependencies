@@ -264,10 +264,8 @@ if ( is_woocommerce_active() ) {
 				// Check ownership.
 				if ( is_user_logged_in() && ( $dependency_type === 1 || $dependency_type === 3 ) ) {
 
-					global $current_user;
-					get_currentuserinfo();
-
-					$is_owner = false;
+					$current_user = wp_get_current_user();
+					$is_owner     = false;
 
 					foreach ( $tied_product_ids as $id ) {
 						if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID, $id ) ) {
@@ -281,11 +279,11 @@ if ( is_woocommerce_active() ) {
 
 						foreach ( $tied_product_ids as $id ) {
 							if ( $tied_product_ids[ 0 ] === $id ) {
-								$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+								$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
 							} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-								$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+								$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
 							} else {
-								$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+								$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
 							}
 						}
 
@@ -307,11 +305,11 @@ if ( is_woocommerce_active() ) {
 
 					foreach ( $tied_product_ids as $id ) {
 						if ( $tied_product_ids[ 0 ] === $id ) {
-							$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+							$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
 						} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-							$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+							$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
 						} else {
-							$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+							$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
 						}
 					}
 

@@ -4,8 +4,8 @@ Contributors: franticpsyx, SomewhereWarm
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=psyx@somewherewarm.net&item_name=Donation+for+WooCommerce+Product+Dependencies
 Tags: woocommerce, products, dependencies, prerequisite, access, restrict, ownership, purchase, together
 Requires at least: 3.3.2
-Tested up to: 4.1
-Stable tag: 1.0.6
+Tested up to: 4.5
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,10 @@ The extension allows you to select between 3 different dependency types:
 2. If the ownership and/or purchase criteria are not met, products with dependencies cannot be added to the cart and a notification will be displayed, such as this one.
 
 == Changelog ==
+
+= 1.0.7 =
+* Fix - Stray "or" in dependent products list when only one dependency is present.
+* Localization - Added Brazilian Portuguese translation.
 
 = 1.0.6 =
 * Fix - PHP array_values warning.

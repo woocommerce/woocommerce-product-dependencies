@@ -298,11 +298,11 @@ if ( is_woocommerce_active() ) {
                                 $variations_name = implode( ', ', $attributes );
 
                                 if ( $tied_product_ids[ 0 ] === $id ) {
-                                    $product_titles[] = sprintf( __( '&ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $variations_name . ' variation of ' . $tied_products[ $id ]->get_title(), get_permalink( $tied_products[ $id ]->id ) );
+                                    $product_titles[] = sprintf( __( '&ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() . '&mdash;' . $variations_name . ' variation', get_permalink( $tied_products[ $id ]->id ) );
                                 } elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-                                    $product_titles[] = sprintf( __( ' or &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $variations_name . ' variation of ' . $tied_products[ $id ]->get_title(), get_permalink( $tied_products[ $id ]->id ) );
+                                    $product_titles[] = sprintf( __( ' or &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() . '&mdash;' . $variations_name . ' variation', get_permalink( $tied_products[ $id ]->id ) );
                                 } else {
-                                    $product_titles[] = sprintf( __( ', &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $variations_name . ' variation of ' . $tied_products[ $id ]->get_title(), get_permalink( $tied_products[ $id ]->id ) );
+                                    $product_titles[] = sprintf( __( ', &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() . '&mdash;' . $variations_name . ' variation', get_permalink( $tied_products[ $id ]->id ) );
                                 }
                             }
 						}

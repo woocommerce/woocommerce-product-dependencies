@@ -278,13 +278,33 @@ if ( is_woocommerce_active() ) {
 						$product_titles = array();
 
 						foreach ( $tied_product_ids as $id ) {
-							if ( $tied_product_ids[ 0 ] === $id ) {
-								$product_titles[] = sprintf( __( '&ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title(), get_permalink( $id ) );
-							} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-								$product_titles[] = sprintf( __( ' or &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title(), get_permalink( $id ) );
-							} else {
-								$product_titles[] = sprintf( __( ', &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title(), get_permalink( $id ) );
-							}
+                            if ( 'product' == get_post_type( $id ) ) {
+                                if ( $tied_product_ids[ 0 ] === $id ) {
+                                    $product_titles[] = sprintf( __( '&ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title(), get_permalink( $id ) );
+                                } elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
+                                    $product_titles[] = sprintf( __( ' or &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title(), get_permalink( $id ) );
+                                } else {
+                                    $product_titles[] = sprintf( __( ', &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title(), get_permalink( $id ) );
+                                }
+                            } elseif ( 'product_variation' == get_post_type( $id ) ) {
+                                $post_custom_metadata = get_post_custom( $id );
+                                // filter out everything except attributes
+                                $attributes = array();
+                                foreach ( $post_custom_metadata as $key => $value ) {
+                                    if ( strpos( $key, 'attribute_' ) === 0 ) {
+                                        $attributes['key'] = implode( ', ', $value );
+                                    }
+                                }
+                                $variations_name = implode( ', ', $attributes );
+
+                                if ( $tied_product_ids[ 0 ] === $id ) {
+                                    $product_titles[] = sprintf( __( '&ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $variations_name . ' variation of ' . $tied_products[ $id ]->get_title(), get_permalink( $tied_products[ $id ]->id ) );
+                                } elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
+                                    $product_titles[] = sprintf( __( ' or &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $variations_name . ' variation of ' . $tied_products[ $id ]->get_title(), get_permalink( $tied_products[ $id ]->id ) );
+                                } else {
+                                    $product_titles[] = sprintf( __( ', &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' ), $variations_name . ' variation of ' . $tied_products[ $id ]->get_title(), get_permalink( $tied_products[ $id ]->id ) );
+                                }
+                            }
 						}
 
 						if ( is_rtl() ) {

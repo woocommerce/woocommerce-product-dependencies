@@ -116,7 +116,7 @@ if ( is_woocommerce_active() ) {
 
 					if ( WC_Tied_Products_Dependencies::is_wc_version_gte_2_3() ) {
 
-						?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products" data-multiple="true" data-selected="<?php
+						?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-multiple="true" data-selected="<?php
 
 							echo esc_attr( json_encode( $product_id_options ) );
 

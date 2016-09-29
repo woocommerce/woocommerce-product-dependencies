@@ -1,17 +1,16 @@
-# Copyright (C) 2016 franticpsyx, SomewhereWarm
-# This file is distributed under the GNU General Public License v3.0.
+# Copyright (C) 2016 WooCommerce Product Dependencies
+# This file is distributed under the same license as the WooCommerce Product Dependencies package.
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Product Dependencies 1.0.7\n"
-"Report-Msgid-Bugs-To: http://www.somewherewarm.net/\n"
-"POT-Creation-Date: 2016-08-16 10:36:39+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-product-dependencies\n"
+"POT-Creation-Date: 2016-09-29 20:53:07+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n 0.4.9\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: woocommerce-product-dependencies.php:70
 msgid "Dependencies"
@@ -21,93 +20,97 @@ msgstr ""
 msgid "Product Dependencies"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:119
-#: woocommerce-product-dependencies.php:127
+#: woocommerce-product-dependencies.php:115
+msgid "(Use ID numbers to search for variations)"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:120
+#: woocommerce-product-dependencies.php:128
 msgid "Search for products&hellip;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:138
-msgid ""
-"Restrict access to this product based on the ownership or purchase of the "
-"items added here."
+#: woocommerce-product-dependencies.php:139
+msgid "Restrict access to this product based on the ownership or purchase of the items added here."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:148
+#: woocommerce-product-dependencies.php:149
 msgid "Dependency Type"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:151
+#: woocommerce-product-dependencies.php:152
 msgid "Ownership"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:152
+#: woocommerce-product-dependencies.php:153
 msgid "Purchase"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:153
+#: woocommerce-product-dependencies.php:154
 msgid "Either"
 msgstr ""
 
 #: woocommerce-product-dependencies.php:284
-#: woocommerce-product-dependencies.php:310
-msgid "&quot;%s&quot;"
+#: woocommerce-product-dependencies.php:302
+msgid "&ldquo;<a href=\"%2$s\">%1$s</a>&rdquo;"
 msgstr ""
 
 #: woocommerce-product-dependencies.php:286
-#: woocommerce-product-dependencies.php:312
-msgid " or &quot;%s&quot;"
+#: woocommerce-product-dependencies.php:304
+msgid " or &ldquo;<a href=\"%2$s\">%1$s</a>&rdquo;"
 msgstr ""
 
 #: woocommerce-product-dependencies.php:288
-#: woocommerce-product-dependencies.php:314
-msgid ", &quot;%s&quot;"
+#: woocommerce-product-dependencies.php:306
+msgid ", &ldquo;<a href=\"%2$s\">%1$s</a>&rdquo;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:297
-msgid "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s."
+#: woocommerce-product-dependencies.php:316
+msgid "Access to &ldquo;%2&rdquo; is restricted only to verified owners of %1$s."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:299
-msgid ""
-"Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
-"Alternatively, access to this item will be granted after adding a %1$s to "
-"the cart."
-msgstr ""
-
-#: woocommerce-product-dependencies.php:325
-msgid ""
-"Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
-"The verification is automatic and simply requires you to be <a "
-"href=\"%3$s\">logged in</a>."
-msgstr ""
-
-#: woocommerce-product-dependencies.php:327
-msgid ""
-"&quot;%2$s&quot; can be purchased only in combination with %1$s. Access to "
-"this item will be granted after adding a %1$s to the cart."
+#: woocommerce-product-dependencies.php:318
+msgid "Access to &ldquo;%2$s&rdquo; is restricted only to verified owners of %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart."
 msgstr ""
 
 #: woocommerce-product-dependencies.php:329
-msgid ""
-"&quot;%2$s&quot; requires the purchase of %1$s. Ownership can be verified "
-"by simply <a href=\"%3$s\">logging in</a>. Alternatively, access to this "
-"item will be granted after adding a %1$s to the cart."
+msgid "&lquo;%s&rdquo;"
 msgstr ""
 
+#: woocommerce-product-dependencies.php:331
+msgid " or &ldquo;%s&rdquo;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:333
+msgid ", &ldquo;%s&rdquo;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:344
+msgid "Access to &ldquo;%2$s&rdquo; is restricted only to verified owners of <a href=\"%3$s\">%1$s</a>s. The verification is automatic and simply requires you to be <a href=\"%4$s\">logged in</a>."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:346
+msgid "&ldquo;%2$s&rdquo; can be purchased only in combination with <a href=\"%3$s\">%1$s</a>s. Access to this item will be granted after adding a <a href=\"%3$s\">%1$s</a> to the cart."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:348
+msgid "&ldquo;%2$s&rdquo; requires the purchase of <a href=\"%3$s\">%1$s</a>. Ownership can be verified by simply <a href=\"%4$s\">logging in</a>. Alternatively, access to this item will be granted after adding a <a href=\"%3$s\">%1$s</a> to the cart."
+msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "WooCommerce Product Dependencies"
 msgstr ""
 
-#. Author URI of the plugin/theme
+#. Plugin URI of the plugin/theme
 msgid "http://www.somewherewarm.net/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"Restrict access to WooCommerce products, depending on the ownership and/or "
-"purchase of other, prerequisite products."
+msgid "Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "franticpsyx, SomewhereWarm"
+msgid "franticpsyx, SomewhereWarm, macbookandrew"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.somewherewarm.net/"
 msgstr ""

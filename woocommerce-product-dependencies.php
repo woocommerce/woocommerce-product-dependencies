@@ -112,6 +112,7 @@ if ( is_woocommerce_active() ) {
 				<p class="form-field">
 					<label>
 						<?php _e( 'Product Dependencies', 'woocommerce-product-dependencies' ); ?>
+						<?php _e( '(Use ID numbers to search for variations)', 'woocommerce-product-dependencies' ); ?>
 					</label><?php
 
 					if ( WC_Tied_Products_Dependencies::is_wc_version_gte_2_3() ) {

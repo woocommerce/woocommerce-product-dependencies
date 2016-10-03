@@ -73,7 +73,7 @@ msgid "Access to &ldquo;%2$s&rdquo; is restricted only to verified owners of %1$
 msgstr ""
 
 #: woocommerce-product-dependencies.php:329
-msgid "&lquo;%s&rdquo;"
+msgid "&ldquo;%s&rdquo;"
 msgstr ""
 
 #: woocommerce-product-dependencies.php:331

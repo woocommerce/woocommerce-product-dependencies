@@ -326,7 +326,7 @@ if ( is_woocommerce_active() ) {
 
 					foreach ( $tied_product_ids as $id ) {
 						if ( $tied_product_ids[ 0 ] === $id ) {
-							$product_titles[] = sprintf( __( '&lquo;%s&rdquo;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
+							$product_titles[] = sprintf( __( '&ldquo;%s&rdquo;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
 						} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
 							$product_titles[] = sprintf( __( ' or &ldquo;%s&rdquo;', 'woocommerce-product-dependencies' ), get_the_title( $id ) );
 						} else {

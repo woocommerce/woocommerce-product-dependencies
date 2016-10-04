@@ -255,7 +255,8 @@ if ( is_woocommerce_active() ) {
 
 					foreach ( $cart_contents as $cart_item ) {
 						$product_id = $cart_item[ 'product_id' ];
-						if ( in_array( $product_id, $tied_product_ids ) ) {
+                        $variation_id = $cart_item[ 'variation_id' ];
+						if ( in_array( $product_id, $tied_product_ids ) || in_array( $variation_id, $tied_product_ids ) ) {
 							return true;
 						}
 					}

@@ -3,7 +3,7 @@
 /*
 * Plugin Name: WooCommerce Product Dependencies
 * Plugin URI: http://www.somewherewarm.net/
-* Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products.
+* Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products or variations.
 * Version: 1.0.7
 * Author: franticpsyx, SomewhereWarm, macbookandrew
 * Author URI: http://www.somewherewarm.net/
@@ -112,12 +112,11 @@ if ( is_woocommerce_active() ) {
 				<p class="form-field">
 					<label>
 						<?php _e( 'Product Dependencies', 'woocommerce-product-dependencies' ); ?>
-						<?php _e( '(Use ID numbers to search for variations)', 'woocommerce-product-dependencies' ); ?>
 					</label><?php
 
 					if ( WC_Tied_Products_Dependencies::is_wc_version_gte_2_3() ) {
 
-						?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-multiple="true" data-selected="<?php
+						?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products (by name or ID) or variations (by ID)&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-multiple="true" data-selected="<?php
 
 							echo esc_attr( json_encode( $product_id_options ) );
 
@@ -125,7 +124,7 @@ if ( is_woocommerce_active() ) {
 
 					} else {
 
-						?><select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" class="ajax_chosen_select_products"><?php
+						?><select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e( 'Search for products (by name or ID) or variations (by ID)&hellip;', 'woocommerce-product-dependencies' ); ?>" class="ajax_chosen_select_products"><?php
 
 							if ( ! empty( $product_id_options ) ) {
 								foreach ( $product_id_options as $product_id => $product_name ) {
@@ -136,7 +135,7 @@ if ( is_woocommerce_active() ) {
 
 			    	}
 
-			    	$tip = __( 'Restrict access to this product based on the ownership or purchase of the items added here.', 'woocommerce-product-dependencies' );
+			    	$tip = __( 'Restrict access to this product based on the ownership or purchase of the items added here. Search for variations using their ID numbers.', 'woocommerce-product-dependencies' );
 
 			    	if ( function_exists( 'wc_help_tip' ) ) {
 			    		echo wc_help_tip( $tip );

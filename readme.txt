@@ -1,24 +1,24 @@
 === WooCommerce Product Dependencies ===
 
-Contributors: franticpsyx, SomewhereWarm
+Contributors: franticpsyx, SomewhereWarm, macbookandrew
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=psyx@somewherewarm.net&item_name=Donation+for+WooCommerce+Product+Dependencies
-Tags: woocommerce, products, dependencies, prerequisite, access, restrict, ownership, purchase, together
+Tags: woocommerce, products, variations, dependencies, prerequisite, access, restrict, ownership, purchase, together
 Requires at least: 3.3.2
 Tested up to: 4.5
 Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce extension that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
+WooCommerce extension that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite products or variations.
 
 == Description ==
 
-**Product Dependencies** is a lightweight WooCommerce extension that allows you to restrict access to any product, depending on the ownership and/or purchase of other, prerequisite items.
+**Product Dependencies** is a lightweight WooCommerce extension that allows you to restrict access to any product, depending on the ownership and/or purchase of other, prerequisite products or variations.
 
 Features:
 
-* **Conditional product access** based on the ownership and/or purchase of prerequisite items.
-* Streamlined admin interface – prerequisite products are entered in a dedicated Dependencies tab.
+* **Conditional product access** based on the ownership and/or purchase of prerequisite products or variations.
+* Streamlined admin interface – prerequisite products/variations are entered in a dedicated Dependencies tab.
 * Support for multiple product dependencies.
 * Support for "ownership", "purchase" and "ownership/purchase" dependency types.
 

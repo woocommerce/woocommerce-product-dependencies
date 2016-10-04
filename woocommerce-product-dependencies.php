@@ -3,9 +3,9 @@
 /*
 * Plugin Name: WooCommerce Product Dependencies
 * Plugin URI: http://www.somewherewarm.net/
-* Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products.
+* Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products or variations.
 * Version: 1.0.7
-* Author: franticpsyx, SomewhereWarm
+* Author: franticpsyx, SomewhereWarm, macbookandrew
 * Author URI: http://www.somewherewarm.net/
 *
 * Text Domain: woocommerce-product-dependencies
@@ -116,7 +116,7 @@ if ( is_woocommerce_active() ) {
 
 					if ( WC_Tied_Products_Dependencies::is_wc_version_gte_2_3() ) {
 
-						?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products" data-multiple="true" data-selected="<?php
+						?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products (by name or ID) or variations (by ID)&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products_and_variations" data-multiple="true" data-selected="<?php
 
 							echo esc_attr( json_encode( $product_id_options ) );
 
@@ -124,7 +124,7 @@ if ( is_woocommerce_active() ) {
 
 					} else {
 
-						?><select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" class="ajax_chosen_select_products"><?php
+						?><select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e( 'Search for products (by name or ID) or variations (by ID)&hellip;', 'woocommerce-product-dependencies' ); ?>" class="ajax_chosen_select_products"><?php
 
 							if ( ! empty( $product_id_options ) ) {
 								foreach ( $product_id_options as $product_id => $product_name ) {
@@ -135,7 +135,7 @@ if ( is_woocommerce_active() ) {
 
 			    	}
 
-			    	$tip = __( 'Restrict access to this product based on the ownership or purchase of the items added here.', 'woocommerce-product-dependencies' );
+			    	$tip = __( 'Restrict access to this product based on the ownership or purchase of the items added here. Search for variations using their ID numbers.', 'woocommerce-product-dependencies' );
 
 			    	if ( function_exists( 'wc_help_tip' ) ) {
 			    		echo wc_help_tip( $tip );
@@ -255,7 +255,8 @@ if ( is_woocommerce_active() ) {
 
 					foreach ( $cart_contents as $cart_item ) {
 						$product_id = $cart_item[ 'product_id' ];
-						if ( in_array( $product_id, $tied_product_ids ) ) {
+                        $variation_id = $cart_item[ 'variation_id' ];
+						if ( in_array( $product_id, $tied_product_ids ) || in_array( $variation_id, $tied_product_ids ) ) {
 							return true;
 						}
 					}
@@ -278,23 +279,31 @@ if ( is_woocommerce_active() ) {
 						$product_titles = array();
 
 						foreach ( $tied_product_ids as $id ) {
-							if ( $tied_product_ids[ 0 ] === $id ) {
-								$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-							} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-								$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-							} else {
-								$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-							}
-						}
+                            if ( $tied_product_ids[ 0 ] === $id ) {
+                                $notice_string = __( '&ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' );
+                            } elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
+                                $notice_string = __( ' or &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' );
+                            } else {
+                                $notice_string = __( ', &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' );
+                            }
 
-						if ( is_rtl() ) {
+                            if ( 'product' == get_post_type( $id ) ) {
+                                $product_titles[] = sprintf( $notice_string, $tied_products[ $id ]->get_title(), get_permalink( $id ) );
+                            } elseif ( 'product_variation' == get_post_type( $id ) ) {
+                                $product = wc_get_product( $id );
+                                $variation_name = $product->get_formatted_variation_attributes( true );
+                                $product_titles[] = sprintf( $notice_string, $product->get_title() . ' (' . $variation_name . ')', $product->get_permalink() );
+                            }
+                        }
+
+                        if ( is_rtl() ) {
 							$product_titles = array_reverse( $product_titles );
 						}
 
 						if ( $dependency_type === 1 ) {
-							wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s.', 'woocommerce-product-dependencies' ), implode( '', $product_titles ), get_the_title( $item_id ) ), 'error' );
+							wc_add_notice( sprintf( __( 'Access to &ldquo;%2&rdquo; is restricted only to verified owners of %1$s.', 'woocommerce-product-dependencies' ), implode( '', $product_titles ), get_the_title( $item_id ) ), 'error' );
 						} else {
-							wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' ), implode( '', $product_titles ), get_the_title( $item_id ) ), 'error' );
+							wc_add_notice( sprintf( __( 'Access to &ldquo;%2$s&rdquo; is restricted only to verified owners of %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' ), implode( '', $product_titles ), get_the_title( $item_id ) ), 'error' );
 						}
 						return false;
 					}
@@ -305,13 +314,22 @@ if ( is_woocommerce_active() ) {
 
 					foreach ( $tied_product_ids as $id ) {
 						if ( $tied_product_ids[ 0 ] === $id ) {
-							$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
+							$notice_string = __( '&ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' );
 						} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-							$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
+							$notice_string = __( ' or &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' );
 						} else {
-							$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
+							$notice_string =  __( ', &ldquo;<a href="%2$s">%1$s</a>&rdquo;', 'woocommerce-product-dependencies' );
 						}
-					}
+
+                        if ( 'product' == get_post_type( $id ) ) {
+                            $product_titles[] = sprintf( $notice_string, get_the_title( $id ), get_permalink( $id ) );
+                        } elseif ( 'product_variation' == get_post_type( $id ) ) {
+                            $product = wc_get_product( $id );
+                            $variation_name = $product->get_formatted_variation_attributes( true );
+                            $product_titles[] = sprintf( $notice_string, $product->get_title() . ' (' . $variation_name . ')', $product->get_permalink() );
+                        }
+
+                    }
 
 					if ( is_rtl() ) {
 						$product_titles = array_reverse( $product_titles );
@@ -320,14 +338,14 @@ if ( is_woocommerce_active() ) {
 					$msg = '';
 
 					if ( $dependency_type === 1 ) {
-						$msg = __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. The verification is automatic and simply requires you to be <a href="%3$s">logged in</a>.', 'woocommerce-product-dependencies' );
+						$msg = __( 'Access to &ldquo;%2$s&rdquo; is restricted only to verified owners of <a href="%3$s">%1$s</a>s. The verification is automatic and simply requires you to be <a href="%4$s">logged in</a>.', 'woocommerce-product-dependencies' );
 					} elseif ( $dependency_type === 2 ) {
-						$msg = __( '&quot;%2$s&quot; can be purchased only in combination with %1$s. Access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' );
+						$msg = __( '&ldquo;%2$s&rdquo; can be purchased only in combination with <a href="%3$s">%1$s</a>s. Access to this item will be granted after adding a <a href="%3$s">%1$s</a> to the cart.', 'woocommerce-product-dependencies' );
 					} else {
-						$msg = __( '&quot;%2$s&quot; requires the purchase of %1$s. Ownership can be verified by simply <a href="%3$s">logging in</a>. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' );
+						$msg = __( '&ldquo;%2$s&rdquo; requires the purchase of <a href="%3$s">%1$s</a>. Ownership can be verified by simply <a href="%4$s">logging in</a>. Alternatively, access to this item will be granted after adding a <a href="%3$s">%1$s</a> to the cart.', 'woocommerce-product-dependencies' );
 					}
 
-					wc_add_notice( sprintf( $msg, implode( '', $product_titles ), get_the_title( $item_id ), wp_login_url() ), 'error' );
+					wc_add_notice( sprintf( $msg, implode( '', $product_titles ), get_the_title( $item_id ), get_permalink( $item_id ), wp_login_url() ), 'error' );
 
 					return false;
 				}

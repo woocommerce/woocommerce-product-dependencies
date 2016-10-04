@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Product Dependencies 1.0.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-product-dependencies\n"
-"POT-Creation-Date: 2016-10-04 00:04:45+00:00\n"
+"POT-Creation-Date: 2016-10-04 00:46:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -45,53 +45,40 @@ msgstr ""
 msgid "Either"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:283
-#: woocommerce-product-dependencies.php:294
+#: woocommerce-product-dependencies.php:282
+#: woocommerce-product-dependencies.php:316
 msgid "&ldquo;<a href=\"%2$s\">%1$s</a>&rdquo;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:285
-#: woocommerce-product-dependencies.php:296
+#: woocommerce-product-dependencies.php:284
+#: woocommerce-product-dependencies.php:318
 msgid " or &ldquo;<a href=\"%2$s\">%1$s</a>&rdquo;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:287
-#: woocommerce-product-dependencies.php:298
+#: woocommerce-product-dependencies.php:286
+#: woocommerce-product-dependencies.php:320
 msgid ", &ldquo;<a href=\"%2$s\">%1$s</a>&rdquo;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:308
+#: woocommerce-product-dependencies.php:303
 msgid "Access to &ldquo;%2&rdquo; is restricted only to verified owners of %1$s."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:310
+#: woocommerce-product-dependencies.php:305
 msgid "Access to &ldquo;%2$s&rdquo; is restricted only to verified owners of %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:321
-msgid "&ldquo;%s&rdquo;"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:323
-msgid " or &ldquo;%s&rdquo;"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:325
-msgid ", &ldquo;%s&rdquo;"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:336
+#: woocommerce-product-dependencies.php:340
 msgid "Access to &ldquo;%2$s&rdquo; is restricted only to verified owners of <a href=\"%3$s\">%1$s</a>s. The verification is automatic and simply requires you to be <a href=\"%4$s\">logged in</a>."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:338
+#: woocommerce-product-dependencies.php:342
 msgid "&ldquo;%2$s&rdquo; can be purchased only in combination with <a href=\"%3$s\">%1$s</a>s. Access to this item will be granted after adding a <a href=\"%3$s\">%1$s</a> to the cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:340
+#: woocommerce-product-dependencies.php:344
 msgid "&ldquo;%2$s&rdquo; requires the purchase of <a href=\"%3$s\">%1$s</a>. Ownership can be verified by simply <a href=\"%4$s\">logging in</a>. Alternatively, access to this item will be granted after adding a <a href=\"%3$s\">%1$s</a> to the cart."
 msgstr ""
-
 #. Plugin Name of the plugin/theme
 msgid "WooCommerce Product Dependencies"
 msgstr ""
@@ -106,4 +93,8 @@ msgstr ""
 
 #. Author of the plugin/theme
 msgid "franticpsyx, SomewhereWarm, macbookandrew"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.somewherewarm.net/"
 msgstr ""

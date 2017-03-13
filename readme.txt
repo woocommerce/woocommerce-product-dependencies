@@ -1,19 +1,20 @@
 === WooCommerce Product Dependencies ===
 
 Contributors: franticpsyx, SomewhereWarm
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=psyx@somewherewarm.net&item_name=Donation+for+WooCommerce+Product+Dependencies
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sw@somewherewarm.net&item_name=Donation+for+WooCommerce+Product+Dependencies
 Tags: woocommerce, products, dependencies, prerequisite, access, restrict, ownership, purchase, together
-Requires at least: 3.3.2
-Tested up to: 4.5
-Stable tag: 1.0.7
+Requires at least: 3.8
+Tested up to: 4.7
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce extension that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
+WooCommerce plugin that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
+
 
 == Description ==
 
-**Product Dependencies** is a lightweight WooCommerce extension that allows you to restrict access to any product, depending on the ownership and/or purchase of other, prerequisite items.
+Lightweight WooCommerce plugin that allows you to restrict access to any product, depending on the ownership and/or purchase of other, prerequisite items.
 
 Features:
 
@@ -24,11 +25,17 @@ Features:
 
 Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/franticpsyx/woocommerce-product-dependencies/).
 
+**Important**: Requires WooCommerce 2.2+. WooCommerce 2.4+ recommended.
+
+
 == Installation ==
 
-1. Ensure you have the latest version of WooCommerce installed.
-2. Unzip and upload the plugin’s folder to your /wp-content/plugins/ directory.
-3. Activate the extension from the ‘Plugins’ menu in WordPress.
+1. Download the plugin.
+2. Go to your WordPress Dashboard and then click **Plugins > Add New**.
+3. Click **Upload Plugin** at the top.
+4. Click **Choose File** and select the .zip file you downloaded in **Step 1**.
+5. Click **Install Now** and **Activate** the plugin.
+
 
 == Documentation ==
 
@@ -42,12 +49,11 @@ After saving, access to your product will be enabled conditionally, based on the
 
 = Ownership vs Purchase =
 
-The extension allows you to select between 3 different dependency types:
+The plugin allows you to select between 3 different dependency types:
 
 * **Ownership**: Access is granted only to customers that already own any of the items added to the Product Dependencies field.
 * **Purchase**: The product can be purchased only in combination with any of the items added to the Product Dependencies field. Ownership is not taken into account.
 * **Either**: Access is granted with ownership or purchase of any item added to the Product Dependencies field.
-
 
 
 == Screenshots ==
@@ -56,6 +62,10 @@ The extension allows you to select between 3 different dependency types:
 2. If the ownership and/or purchase criteria are not met, products with dependencies cannot be added to the cart and a notification will be displayed, such as this one.
 
 == Changelog ==
+
+= 1.1.0 =
+* Refactored and cleaned up plugin.
+* Fix - Added support for WooCommerce 2.7.
 
 = 1.0.7 =
 * Fix - Stray "or" in dependent products list when only one dependency is present.

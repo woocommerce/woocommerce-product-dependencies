@@ -1,0 +1,24 @@
+{
+	"name": "woocommerce-product-dependencies",
+	"title": "WooCommerce Product Dependencies",
+	"version": "1.0.8",
+	"homepage": "http://somewherewarm.gr/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/somewherewarm/woocommerce-product-dependencies.git"
+	},
+	"license": "GPL-3.0+",
+	"main": "Gruntfile.js",
+	"devDependencies": {
+		"grunt": "~1.0.1",
+		"grunt-checktextdomain": "~1.0.0",
+		"grunt-contrib-jshint": "~1.0.0",
+		"grunt-contrib-uglify": "~1.0.2",
+		"grunt-contrib-watch": "~1.0.0",
+		"grunt-wp-i18n": "~0.5.4"
+	},
+	"engines": {
+		"node": ">=0.8.0",
+		"npm": ">=1.1.0"
+	}
+}

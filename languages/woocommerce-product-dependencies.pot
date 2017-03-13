@@ -1,97 +1,105 @@
-# Copyright (C) 2016 franticpsyx, SomewhereWarm
+# Copyright (C) 2017 SomewhereWarm
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Product Dependencies 1.0.7\n"
-"Report-Msgid-Bugs-To: http://www.somewherewarm.net/\n"
-"POT-Creation-Date: 2016-08-16 10:36:39+00:00\n"
+"Project-Id-Version: WooCommerce Product Dependencies 1.0.8\n"
+"Report-Msgid-Bugs-To: "
+"https://github.com/somewherewarm/woocommerce-product-dependencies\n"
+"POT-Creation-Date: 2017-03-13 11:57:34+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"X-Generator: grunt-wp-i18n 0.4.9\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
 
-#: woocommerce-product-dependencies.php:70
-msgid "Dependencies"
+#: woocommerce-product-dependencies.php:57
+#: woocommerce-product-dependencies.php:66
+msgid "Foul!"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:114
-msgid "Product Dependencies"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:119
-#: woocommerce-product-dependencies.php:127
-msgid "Search for products&hellip;"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:138
-msgid ""
-"Restrict access to this product based on the ownership or purchase of the "
-"items added here."
-msgstr ""
-
-#: woocommerce-product-dependencies.php:148
-msgid "Dependency Type"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:151
-msgid "Ownership"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:152
-msgid "Purchase"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:153
-msgid "Either"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:284
-#: woocommerce-product-dependencies.php:310
+#: woocommerce-product-dependencies.php:242
+#: woocommerce-product-dependencies.php:268
 msgid "&quot;%s&quot;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:286
-#: woocommerce-product-dependencies.php:312
+#: woocommerce-product-dependencies.php:244
+#: woocommerce-product-dependencies.php:270
 msgid " or &quot;%s&quot;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:288
-#: woocommerce-product-dependencies.php:314
+#: woocommerce-product-dependencies.php:246
+#: woocommerce-product-dependencies.php:272
 msgid ", &quot;%s&quot;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:297
+#: woocommerce-product-dependencies.php:255
 msgid "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:299
+#: woocommerce-product-dependencies.php:257
 msgid ""
 "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
 "Alternatively, access to this item will be granted after adding a %1$s to "
 "the cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:325
+#: woocommerce-product-dependencies.php:283
 msgid ""
 "Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. "
 "The verification is automatic and simply requires you to be <a "
 "href=\"%3$s\">logged in</a>."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:327
+#: woocommerce-product-dependencies.php:285
 msgid ""
 "&quot;%2$s&quot; can be purchased only in combination with %1$s. Access to "
 "this item will be granted after adding a %1$s to the cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:329
+#: woocommerce-product-dependencies.php:287
 msgid ""
 "&quot;%2$s&quot; requires the purchase of %1$s. Ownership can be verified "
 "by simply <a href=\"%3$s\">logging in</a>. Alternatively, access to this "
 "item will be granted after adding a %1$s to the cart."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:311
+#: woocommerce-product-dependencies.php:322
+msgid "Dependencies"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:369
+msgid "Product Dependencies"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:374
+#: woocommerce-product-dependencies.php:387
+#: woocommerce-product-dependencies.php:395
+msgid "Search for products&hellip;"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:406
+msgid ""
+"Restrict product access based on ownership or purchase of "
+"<strong>any</strong> product added to this list."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:411
+msgid "Dependency Type"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:414
+msgid "Ownership"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:415
+msgid "Purchase"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:416
+msgid "Either"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
@@ -99,7 +107,7 @@ msgid "WooCommerce Product Dependencies"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://www.somewherewarm.net/"
+msgid "http://somewherewarm.gr/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -109,5 +117,35 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "franticpsyx, SomewhereWarm"
+msgid "SomewhereWarm"
+msgstr ""
+
+#: class-wc-pd-helpers.php:69
+msgctxt "product title followed by meta and sku in parenthesis"
+msgid "%1$s &ndash; %2$s (%3$s)"
+msgstr ""
+
+#: class-wc-pd-helpers.php:71
+msgctxt "sku followed by product title and meta"
+msgid "%1$s &ndash; %2$s &ndash; %3$s"
+msgstr ""
+
+#: class-wc-pd-helpers.php:75
+msgctxt "product title followed by sku in parenthesis"
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#: class-wc-pd-helpers.php:77
+msgctxt "sku followed by product title"
+msgid "%1$s &ndash; %2$s"
+msgstr ""
+
+#: class-wc-pd-helpers.php:81
+msgctxt "product title followed by meta in parenthesis"
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#: class-wc-pd-helpers.php:83
+msgctxt "product title followed by meta"
+msgid "%1$s &ndash; %2$s"
 msgstr ""

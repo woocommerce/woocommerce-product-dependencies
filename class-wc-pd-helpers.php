@@ -19,6 +19,45 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_PD_Helpers {
 
+	public static function merge_product_titles( $products ) {
+
+		$product_titles = array();
+
+		if ( ! empty( $products ) ) {
+
+			$loop = 0;
+
+			foreach ( $products as $product_id => $product ) {
+
+				if ( $loop === 0 ) {
+					$product_title = __( '%s', 'woocommerce-product-dependencies' );
+				} elseif ( count( $products ) - 1 === $loop ) {
+					$product_title = __( ' or %s', 'woocommerce-product-dependencies' );
+				} else {
+					$product_title = __( ', %s', 'woocommerce-product-dependencies' );
+				}
+
+				$product_permalink = $product->is_visible() ? $product->get_permalink() : '';
+
+				if ( $product_permalink ) {
+					$product_title = sprintf( $product_title, sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $product->get_title() ) );
+				} else {
+					$product_title = sprintf( $product_title, $product->get_title() );
+				}
+
+				$product_titles[] = $product_title;
+
+				$loop++;
+			}
+		}
+
+		if ( is_rtl() ) {
+			$product_titles = array_reverse( $product_titles );
+		}
+
+		return implode( '', $product_titles );
+	}
+
 	/**
 	 * Return a formatted product title.
 	 *

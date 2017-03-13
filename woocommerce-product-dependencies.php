@@ -173,7 +173,7 @@ class WC_Product_Dependencies {
 
 		if ( is_a( $item, 'WC_Product' ) ) {
 			$product    = $item;
-			$product_id = WC_PD_Core_Compatibility::get_id( $product );
+			$product_id = $product->is_type( 'variation' ) ? WC_PD_Core_Compatibility::get_parent_id( $product ) : WC_PD_Core_Compatibility::get_id( $product );
 		} else {
 			$product_id = absint( $item );
 			$product    = wc_get_product( $product_id );
@@ -235,47 +235,19 @@ class WC_Product_Dependencies {
 
 				if ( ! $is_owner ) {
 
-					$product_titles = array();
-
-					foreach ( $tied_product_ids as $id ) {
-						if ( $tied_product_ids[ 0 ] === $id ) {
-							$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-						} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-							$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-						} else {
-							$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-						}
-					}
-
-					if ( is_rtl() ) {
-						$product_titles = array_reverse( $product_titles );
-					}
+					$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
 
 					if ( $dependency_type === 1 ) {
-						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s.', 'woocommerce-product-dependencies' ), implode( '', $product_titles ), $product_title ), 'error' );
+						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s.', 'woocommerce-product-dependencies' ), $merged_titles, $product_title ), 'error' );
 					} else {
-						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' ), implode( '', $product_titles ), $product_title ), 'error' );
+						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' ), $merged_titles, $product_title ), 'error' );
 					}
 					return false;
 				}
 
 			} else {
 
-				$product_titles = array();
-
-				foreach ( $tied_product_ids as $id ) {
-					if ( $tied_product_ids[ 0 ] === $id ) {
-						$product_titles[] = sprintf( __( '&quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-					} elseif ( $tied_product_ids[ count( $tied_product_ids ) - 1 ] === $id ) {
-						$product_titles[] = sprintf( __( ' or &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-					} else {
-						$product_titles[] = sprintf( __( ', &quot;%s&quot;', 'woocommerce-product-dependencies' ), $tied_products[ $id ]->get_title() );
-					}
-				}
-
-				if ( is_rtl() ) {
-					$product_titles = array_reverse( $product_titles );
-				}
+				$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
 
 				$msg = '';
 
@@ -287,7 +259,7 @@ class WC_Product_Dependencies {
 					$msg = __( '&quot;%2$s&quot; requires the purchase of %1$s. Ownership can be verified by simply <a href="%3$s">logging in</a>. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' );
 				}
 
-				wc_add_notice( sprintf( $msg, implode( '', $product_titles ), $product_title, wp_login_url() ), 'error' );
+				wc_add_notice( sprintf( $msg, $merged_titles, $product_title, wp_login_url() ), 'error' );
 
 				return false;
 			}

@@ -66,6 +66,7 @@ The plugin allows you to select between 3 different dependency types:
 = 1.1.0 =
 * Refactored and cleaned up plugin.
 * Fix - Added support for WooCommerce 2.7.
+* Tweak - Add links to dependent products in notices.
 
 = 1.0.7 =
 * Fix - Stray "or" in dependent products list when only one dependency is present.

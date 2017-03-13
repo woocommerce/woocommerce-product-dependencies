@@ -214,8 +214,9 @@ class WC_Product_Dependencies {
 				$cart_contents = WC()->cart->cart_contents;
 
 				foreach ( $cart_contents as $cart_item ) {
-					$product_id = $cart_item[ 'product_id' ];
-					if ( in_array( $product_id, $tied_product_ids ) ) {
+					$product_id   = $cart_item[ 'product_id' ];
+					$variation_id = $cart_item[ 'variation_id' ];
+					if ( in_array( $product_id, $tied_product_ids ) || in_array( $variation_id, $tied_product_ids ) ) {
 						return true;
 					}
 				}
@@ -343,7 +344,7 @@ class WC_Product_Dependencies {
 
 				if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
 
-					?><select id="tied_products" name="tied_products[]" class="wc-product-search" multiple="multiple" style="width: 75%;" data-limit="500" data-action="woocommerce_json_search_products" data-placeholder="<?php echo  __( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>"><?php
+					?><select id="tied_products" name="tied_products[]" class="wc-product-search" multiple="multiple" style="width: 75%;" data-limit="500" data-action="woocommerce_json_search_products_and_variations" data-placeholder="<?php echo  __( 'Search for products and variations&hellip;', 'woocommerce-product-dependencies' ); ?>"><?php
 
 						if ( ! empty( $product_id_options ) ) {
 
@@ -375,7 +376,7 @@ class WC_Product_Dependencies {
 
 				}
 
-				echo WC_PD_Core_Compatibility::wc_help_tip( __( 'Restrict product access based on ownership or purchase of <strong>any</strong> product added to this list.', 'woocommerce-product-dependencies' ) );
+				echo WC_PD_Core_Compatibility::wc_help_tip( __( 'Restrict product access based on the ownership or purchase of <strong>any</strong> product or variation added to this list.', 'woocommerce-product-dependencies' ) );
 
 				?>
 			</p>

@@ -21,7 +21,7 @@ class WC_PD_Helpers {
 
 	public static function merge_product_titles( $products ) {
 
-		$product_titles = array();
+		$parts_to_merge = array();
 
 		if ( ! empty( $products ) ) {
 
@@ -30,32 +30,33 @@ class WC_PD_Helpers {
 			foreach ( $products as $product_id => $product ) {
 
 				if ( $loop === 0 ) {
-					$product_title = __( '%s', 'woocommerce-product-dependencies' );
+					$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
 				} elseif ( count( $products ) - 1 === $loop ) {
-					$product_title = __( ' or %s', 'woocommerce-product-dependencies' );
+					$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
 				} else {
-					$product_title = __( ', %s', 'woocommerce-product-dependencies' );
+					$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
 				}
 
 				$product_permalink = $product->is_visible() ? $product->get_permalink() : '';
+				$product_title     = WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ? $product->get_name() : $product->get_title();
 
 				if ( $product_permalink ) {
-					$product_title = sprintf( $product_title, sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $product->get_title() ) );
+					$part_to_merge = sprintf( $part_to_merge, sprintf( '&quot;<a href="%1$s">%2$s</a>&quot;', esc_url( $product_permalink ), $product_title ) );
 				} else {
-					$product_title = sprintf( $product_title, $product->get_title() );
+					$part_to_merge = sprintf( $part_to_merge, sprintf( '&quot;%s&quot;', $product_title ) );
 				}
 
-				$product_titles[] = $product_title;
+				$parts_to_merge[] = $part_to_merge;
 
 				$loop++;
 			}
 		}
 
 		if ( is_rtl() ) {
-			$product_titles = array_reverse( $product_titles );
+			$parts_to_merge = array_reverse( $parts_to_merge );
 		}
 
-		return implode( '', $product_titles );
+		return implode( '', $parts_to_merge );
 	}
 
 	/**

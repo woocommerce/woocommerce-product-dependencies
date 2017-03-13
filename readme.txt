@@ -25,7 +25,7 @@ Features:
 
 Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/franticpsyx/woocommerce-product-dependencies/).
 
-**Important**: Requires WooCommerce 2.2+. WooCommerce 2.4+ recommended.
+**Important**: Requires WooCommerce 2.2+. WooCommerce 2.4+ or higher recommended.
 
 
 == Installation ==

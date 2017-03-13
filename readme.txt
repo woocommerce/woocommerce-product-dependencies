@@ -9,12 +9,11 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce plugin that allows you to restrict access to certain products, depending on the ownership and/or purchase of other, prerequisite items.
-
+Restrict access to any WooCommerce product, depending on the ownership and/or purchase of other, prerequisite items.
 
 == Description ==
 
-Lightweight WooCommerce plugin that allows you to restrict access to any product, depending on the ownership and/or purchase of other, prerequisite items.
+Restrict access to any WooCommerce product, depending on the ownership and/or purchase of other, prerequisite items.
 
 Features:
 

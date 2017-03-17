@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sw@somew
 Tags: woocommerce, products, dependencies, prerequisite, access, restrict, ownership, purchase, together
 Requires at least: 3.8
 Tested up to: 4.7
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,9 +62,12 @@ The plugin allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 1.1.1 =
+* Fix - Dependencies not working under WC < 3.0 after last update. Fixed!
+
 = 1.1.0 =
 * Refactored and cleaned up plugin.
-* Fix - Added support for WooCommerce 2.7.
+* Fix - Added support for WooCommerce 3.0.
 * Tweak - Add links to dependent products in notices.
 
 = 1.0.7 =

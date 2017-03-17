@@ -4,7 +4,7 @@
 * Plugin Name: WooCommerce Product Dependencies
 * Plugin URI: http://somewherewarm.gr/
 * Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, prerequisite products.
-* Version: 1.1.0
+* Version: 1.1.1
 * Author: SomewhereWarm
 * Author URI: http://somewherewarm.gr/
 *
@@ -187,8 +187,8 @@ class WC_Product_Dependencies {
 			$tied_product_ids = $product->get_meta( '_tied_products', true );
 			$dependency_type  = absint( $product->get_meta( '_dependency_type', true ) );
 		} else {
-			$tied_product_ids = (array) get_post_meta( $item_id, '_tied_products', true );
-			$dependency_type  = absint( get_post_meta( $item_id, '_dependency_type', true ) );
+			$tied_product_ids = (array) get_post_meta( $product_id, '_tied_products', true );
+			$dependency_type  = absint( get_post_meta( $product_id, '_dependency_type', true ) );
 		}
 
 		$product_title = $product->get_title();

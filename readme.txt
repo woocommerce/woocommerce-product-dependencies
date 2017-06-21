@@ -4,7 +4,7 @@ Contributors: franticpsyx, SomewhereWarm
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=sw@somewherewarm.net&item_name=Donation+for+WooCommerce+Product+Dependencies
 Tags: woocommerce, products, dependencies, prerequisite, access, restrict, ownership, purchase, together
 Requires at least: 3.8
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,9 @@ The plugin allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 1.1.2 =
+* Fix - Variable product dependencies not validated correctly in the cart.
+
 = 1.1.1 =
 * Fix - Dependencies not working under WC < 3.0 after last update. Fixed!
 
@@ -97,5 +100,5 @@ The plugin allows you to select between 3 different dependency types:
 
 == Upgrade Notice ==
 
-= 1.0.6 =
-Fixes a PHP array_values warning.
+= 1.1.2 =
+Variable product dependencies are now validated correctly in the cart.

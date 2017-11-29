@@ -31,6 +31,8 @@ class WC_Product_Dependencies {
 	 */
 	private $required = '2.2';
 
+
+	public static $version = '1.1.2';
 	/**
 	 * Main WC_Product_Dependencies instance.
 	 *
@@ -75,6 +77,10 @@ class WC_Product_Dependencies {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 	}
 
+	public static function plugin_url() {
+		return plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename(__FILE__) );
+	}
+
 	/**
 	 * Initialize.
 	 *
@@ -102,6 +108,9 @@ class WC_Product_Dependencies {
 		add_action( 'woocommerce_check_cart_items', array( $this, 'check_cart_items' ), 1 );
 
 		if ( is_admin() ) {
+
+			// Admin jQuery.
+			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'dependencies_admin_scripts' ) );
 
 			// Save admin options.
 			if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
@@ -132,9 +141,28 @@ class WC_Product_Dependencies {
 	 * @return void
 	 */
 	public function init() {
+
 		load_plugin_textdomain( 'woocommerce-product-dependencies', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
+	/**
+	 * Include scripts.
+	 */
+	public static function dependencies_admin_scripts() {
+
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_register_script( 'wc-pd-writepanels', self::plugin_url() . '/assets/js/wc-pd-writepanels' . $suffix . '.js', array(), self::$version );
+
+		$screen    = get_current_screen();
+		$screen_id = $screen ? $screen->id : '';
+
+		if ( in_array( $screen_id, array( 'product' ) ) ) {
+			wp_enqueue_script( 'wc-pd-writepanels' );
+		}
+
+
+	}
 	/**
 	 * Validates a product when adding to cart.
 	 *
@@ -183,16 +211,15 @@ class WC_Product_Dependencies {
 			$product_id = absint( $item );
 			$product    = wc_get_product( $product_id );
 		}
-
 		if ( ! $product ) {
 			return;
 		}
 
+		$tied_product_ids = self::get_dependent_ids( $product, $product_id );
+
 		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
-			$tied_product_ids = $product->get_meta( '_tied_products', true );
 			$dependency_type  = absint( $product->get_meta( '_dependency_type', true ) );
 		} else {
-			$tied_product_ids = (array) get_post_meta( $product_id, '_tied_products', true );
 			$dependency_type  = absint( get_post_meta( $product_id, '_dependency_type', true ) );
 		}
 
@@ -208,16 +235,11 @@ class WC_Product_Dependencies {
 				}
 			}
 		}
-
 		if ( ! empty( $tied_products ) ) {
-
 			$tied_product_ids = array_keys( $tied_products );
-
 			// Check cart.
 			if ( $dependency_type === 2 || $dependency_type === 3 ) {
-
 				$cart_contents = WC()->cart->cart_contents;
-
 				foreach ( $cart_contents as $cart_item ) {
 					$product_id   = $cart_item[ 'product_id' ];
 					$variation_id = $cart_item[ 'variation_id' ];
@@ -226,23 +248,17 @@ class WC_Product_Dependencies {
 					}
 				}
 			}
-
 			// Check ownership.
 			if ( is_user_logged_in() && ( $dependency_type === 1 || $dependency_type === 3 ) ) {
-
 				$current_user = wp_get_current_user();
 				$is_owner     = false;
-
 				foreach ( $tied_product_ids as $id ) {
 					if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID, $id ) ) {
 						$is_owner = true;
 					}
 				}
-
 				if ( ! $is_owner ) {
-
 					$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
-
 					if ( $dependency_type === 1 ) {
 						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s.', 'woocommerce-product-dependencies' ), $merged_titles, $product_title ), 'error' );
 					} else {
@@ -250,13 +266,9 @@ class WC_Product_Dependencies {
 					}
 					return false;
 				}
-
 			} else {
-
 				$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
-
 				$msg = '';
-
 				if ( $dependency_type === 1 ) {
 					$msg = __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. The verification is automatic and simply requires you to be <a href="%3$s">logged in</a>.', 'woocommerce-product-dependencies' );
 				} elseif ( $dependency_type === 2 ) {
@@ -264,14 +276,70 @@ class WC_Product_Dependencies {
 				} else {
 					$msg = __( '&quot;%2$s&quot; requires the purchase of %1$s. Ownership can be verified by simply <a href="%3$s">logging in</a>. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' );
 				}
-
 				wc_add_notice( sprintf( $msg, $merged_titles, $product_title, wp_login_url() ), 'error' );
-
 				return false;
 			}
 		}
-
 		return true;
+	}
+
+	/**
+	 * Returns an array with all dependent product ids.
+	 *
+	 * @param  WC_Product $product
+	 * @param  integer    $product_id
+	 * @return array      $dependent_ids
+	 */
+	function get_dependent_ids( $product, $product_id ) {
+
+		$dependent_ids  = array();
+
+		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+			$selection_type = $product->get_meta( '_dependency_selection_type', true );
+		} else {
+			$selection_type = (array) get_post_meta( $product_id, '_dependency_selection_type', true );
+		}
+
+		$selection_type = in_array( $selection_type, array( 'product_ids', 'category_ids' ) ) ? $selection_type : 'product_ids';
+
+
+		if ( 'product_ids' === $selection_type ) {
+
+			if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+				$dependent_ids = $product->get_meta( '_tied_products', true );
+			} else {
+				$dependent_ids = (array) get_post_meta( $product_id, '_tied_products', true );
+			}
+
+		} elseif ( 'category_ids' === $selection_type ) {
+
+			if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+				$category_ids = $product->get_meta( '_tied_categories', true );
+			} else {
+				$category_ids = (array) get_post_meta( $product_id, '_tied_categories', true );
+			}
+
+			if ( ! empty( $category_ids ) ) {
+
+				$query_results = new WP_Query( array(
+					'post_type'   => 'product',
+					'post_status' => 'publish',
+					'fields'      => 'ids',
+					'tax_query'   => array(
+						array(
+							'taxonomy' => 'product_cat',
+							'field'    => 'term_id',
+							'terms'    => $category_ids,
+							'operator' => 'IN',
+						)
+					)
+				) );
+
+				$dependent_ids = $query_results->posts;
+			}
+		}
+
+		return $dependent_ids;
 	}
 
 	/*
@@ -317,16 +385,23 @@ class WC_Product_Dependencies {
 		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
 			$tied_products   = $product_object->get_meta( '_tied_products', true );
 			$dependency_type = $product_object->get_meta( '_dependency_type', true );
+			$selection_type  = $product_object->get_meta( '_dependency_selection_type', true );
 		} else {
 			$tied_products   = get_post_meta( $post->ID, '_tied_products', true );
 			$dependency_type = get_post_meta( $post->ID, '_dependency_type', true );
+			$selection_type  = get_post_meta( $post->ID, '_dependency_selection_type', true );
 		}
 
 		if ( ! $dependency_type ) {
 			$dependency_type = 3;
 		}
 
-		$product_id_options = array();
+		$product_id_options  = array();
+
+		$product_categories  = ( array ) get_terms( 'product_cat', array( 'get' => 'all' ) );
+		$selected_categories = ( empty( $product_object->get_meta( '_tied_categories', true ) ) ) ? array() : $product_object->get_meta( '_tied_categories', true );
+
+		$selection_type      = in_array( $selection_type, array( 'product_ids', 'category_ids' ) ) ? $selection_type : 'product_ids';
 
 		if ( $tied_products ) {
 			foreach ( $tied_products as $item_id ) {
@@ -342,58 +417,93 @@ class WC_Product_Dependencies {
 		?>
 		<div id="tied_products_data" class="panel woocommerce_options_panel wc-metaboxes-wrapper">
 
-			<p class="form-field">
-				<label>
-					<?php _e( 'Product Dependencies', 'woocommerce-product-dependencies' ); ?>
-				</label><?php
+			<?php
 
-				if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+				woocommerce_wp_select( array(
+					'id'            => 'product_dependencies_dropdown',
+					'label'         => __( 'Product Dependencies', 'woocommerce-product-dependencies' ),
+					'options'       => array(
+						'product_ids'  => __( 'Select products', 'woocommerce-product-dependencies' ),
+						'category_ids' => __( 'Select categories', 'woocommerce-product-dependencies' )
+					),
+					'value'         => $selection_type
+				) );
+			?>
 
-					?><select id="tied_products" name="tied_products[]" class="wc-product-search" multiple="multiple" style="width: 75%;" data-limit="500" data-action="woocommerce_json_search_products_and_variations" data-placeholder="<?php echo  __( 'Search for products and variations&hellip;', 'woocommerce-product-dependencies' ); ?>"><?php
+			<label>
+				<?php _e( 'Product Dependencies', 'woocommerce-product-dependencies' ); ?>
+			</label>
 
-						if ( ! empty( $product_id_options ) ) {
+			<div id="product_ids_dependencies_choice" class="form-field">
+				<p class="form-field">
+					<?php
 
-							foreach ( $product_id_options as $product_id => $product_name ) {
-								echo '<option value="' . $product_id . '" selected="selected">' . $product_name . '</option>';
+					if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+
+						?><select id="tied_products" name="tied_products[]" class="wc-product-search" multiple="multiple" style="width: 75%;" data-limit="500" data-action="woocommerce_json_search_products_and_variations" data-placeholder="<?php echo  __( 'Search for products and variations&hellip;', 'woocommerce-product-dependencies' ); ?>"><?php
+
+							if ( ! empty( $product_id_options ) ) {
+
+								foreach ( $product_id_options as $product_id => $product_name ) {
+									echo '<option value="' . $product_id . '" selected="selected">' . $product_name . '</option>';
+								}
 							}
+
+						?></select><?php
+
+					} elseif ( WC_PD_Core_Compatibility::is_wc_version_gte_2_3() ) {
+
+						?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products" data-multiple="true" data-selected="<?php
+
+							echo esc_attr( json_encode( $product_id_options ) );
+
+						?>" value="<?php echo implode( ',', array_keys( $product_id_options ) ); ?>" /><?php
+
+					} else {
+
+						?><select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" class="ajax_chosen_select_products"><?php
+
+							if ( ! empty( $product_id_options ) ) {
+
+								foreach ( $product_id_options as $product_id => $product_name ) {
+									echo '<option value="' . $product_id . '" selected="selected">' . $product_name . '</option>';
+								}
+							}
+						?></select><?php
+
+					}
+
+					echo WC_PD_Core_Compatibility::wc_help_tip( __( 'Restrict product access based on the ownership or purchase of <strong>any</strong> product or variation added to this list.', 'woocommerce-product-dependencies' ) );
+
+					?>
+				</p>
+			</div>
+
+			<div id="category_ids_dependencies_choice" class="form-field" >
+				<p class="form-field">
+					<select id="tied_categories" name="tied_categories[]" style="width: 75%" class="multiselect wc-enhanced-select" multiple="multiple" data-placeholder="<?php echo  __( 'Select product categories&hellip;', 'woocommerce-product-dependencies' ); ?>"><?php
+
+						if ( ! empty( $product_categories ) ) {
+
+							foreach ( $product_categories as $product_category )
+								echo '<option value="' . $product_category->term_id . '" ' . selected( in_array( $product_category->term_id, $selected_categories ), true, false ).'>' . $product_category->name . '</option>';
 						}
 
-					?></select><?php
+					?></select>
+				</p>
+			</div>
 
-				} elseif ( WC_PD_Core_Compatibility::is_wc_version_gte_2_3() ) {
-
-					?><input type="hidden" id="tied_products" name="tied_products" class="wc-product-search" style="width: 75%;" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" data-action="woocommerce_json_search_products" data-multiple="true" data-selected="<?php
-
-						echo esc_attr( json_encode( $product_id_options ) );
-
-					?>" value="<?php echo implode( ',', array_keys( $product_id_options ) ); ?>" /><?php
-
-				} else {
-
-					?><select id="tied_products" multiple="multiple" name="tied_products[]" data-placeholder="<?php _e( 'Search for products&hellip;', 'woocommerce-product-dependencies' ); ?>" class="ajax_chosen_select_products"><?php
-
-						if ( ! empty( $product_id_options ) ) {
-							foreach ( $product_id_options as $product_id => $product_name ) {
-								echo '<option value="' . $product_id . '" selected="selected">' . $product_name . '</option>';
-							}
-						}
-					?></select><?php
-
-				}
-
-				echo WC_PD_Core_Compatibility::wc_help_tip( __( 'Restrict product access based on the ownership or purchase of <strong>any</strong> product or variation added to this list.', 'woocommerce-product-dependencies' ) );
-
-				?>
-			</p>
-			<p class="form-field">
-				<label><?php _e( 'Dependency Type', 'woocommerce-product-dependencies' ); ?>
-				</label>
-				<select name="dependency_type" id="dependency_type" style="min-width:150px;">
-					<option value="1" <?php echo $dependency_type == 1 ? 'selected="selected"' : ''; ?>><?php _e( 'Ownership', 'woocommerce-product-dependencies' ); ?></option>
-					<option value="2" <?php echo $dependency_type == 2 ? 'selected="selected"' : ''; ?>><?php _e( 'Purchase', 'woocommerce-product-dependencies' ); ?></option>
-					<option value="3" <?php echo $dependency_type == 3 ? 'selected="selected"' : ''; ?>><?php _e( 'Either', 'woocommerce-product-dependencies' ); ?></option>
-				</select>
-			</p>
+			<div class="form-field">
+				<p class="form-field">
+					<label><?php _e( 'Dependency Type', 'woocommerce-product-dependencies' ); ?>
+					</label>
+					<select name="dependency_type" id="dependency_type" style="min-width:150px;">
+						<option value="1" <?php echo $dependency_type == 1 ? 'selected="selected"' : ''; ?>><?php _e( 'Ownership', 'woocommerce-product-dependencies' ); ?></option>
+						<option value="2" <?php echo $dependency_type == 2 ? 'selected="selected"' : ''; ?>><?php _e( 'Purchase', 'woocommerce-product-dependencies' ); ?></option>
+						<option value="3" <?php echo $dependency_type == 3 ? 'selected="selected"' : ''; ?>><?php _e( 'Either', 'woocommerce-product-dependencies' ); ?></option>
+					</select>
+				</p>
+			</div>
 		</div>
 	<?php
 	}
@@ -406,10 +516,15 @@ class WC_Product_Dependencies {
 	 */
 	public function process_product_data( $product ) {
 
+		if ( ! empty( $_POST[ 'tied_categories' ] ) && is_array( $_POST[ 'tied_categories' ] ) ) {
+			$tied_categories = array_map( 'intval', $_POST[ 'tied_categories' ] );
+			$product->add_meta_data( '_tied_categories', $tied_categories, true );
+		} else {
+			$product->delete_meta_data( '_tied_categories' );
+		}
+
 		if ( ! isset( $_POST[ 'tied_products' ] ) || empty( $_POST[ 'tied_products' ] ) ) {
-
 			$product->delete_meta_data( '_tied_products' );
-
 		} elseif ( isset( $_POST[ 'tied_products' ] ) && ! empty( $_POST[ 'tied_products' ] ) ) {
 
 			$tied_ids = $_POST[ 'tied_products' ];
@@ -423,8 +538,12 @@ class WC_Product_Dependencies {
 			$product->add_meta_data( '_tied_products', $tied_ids, true );
 		}
 
-		if ( isset( $_POST[ 'dependency_type' ] ) && ! empty( $_POST[ 'dependency_type' ] ) ) {
+		if ( ! empty( $_POST[ 'dependency_type' ] ) ) {
 			$product->add_meta_data( '_dependency_type', stripslashes( $_POST[ 'dependency_type' ] ), true );
+		}
+
+		if ( ! empty( $_POST[ 'product_dependencies_dropdown' ] ) ) {
+			$product->add_meta_data( '_dependency_selection_type', stripslashes( $_POST[ 'product_dependencies_dropdown' ] ), true );
 		}
 	}
 
@@ -438,6 +557,14 @@ class WC_Product_Dependencies {
 	public function process_meta( $post_id, $post ) {
 
 		global $post;
+
+		if ( ! empty( $_POST[ 'tied_categories' ] ) && is_array( $_POST[ 'tied_categories' ] ) ) {
+			$tied_categories = array_map( 'intval', $_POST[ 'tied_categories' ] );
+			update_post_meta( $post_id, '_tied_categories', $tied_categories );
+		} else {
+
+			delete_post_meta( $post_id, '_tied_categories' );
+		}
 
 		if ( ! isset( $_POST[ 'tied_products' ] ) || empty( $_POST[ 'tied_products' ] ) ) {
 
@@ -456,8 +583,12 @@ class WC_Product_Dependencies {
 			update_post_meta( $post_id, '_tied_products', $tied_ids );
 		}
 
-		if ( isset( $_POST[ 'dependency_type' ] ) && ! empty( $_POST[ 'dependency_type' ] ) ) {
+		if ( ! empty( $_POST[ 'dependency_type' ] ) ) {
 			update_post_meta( $post_id, '_dependency_type', stripslashes( $_POST[ 'dependency_type' ] ) );
+		}
+
+		if ( ! empty( $_POST[ 'product_dependencies_dropdown' ] ) ) {
+			update_post_meta( $post_id, '_dependency_selection_type', stripslashes( $_POST[ 'product_dependencies_dropdown' ] ) );
 		}
 	}
 

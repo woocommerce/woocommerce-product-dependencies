@@ -19,7 +19,7 @@ Restrict access to any WooCommerce product, depending on the ownership and/or pu
 Features:
 
 * **Conditional product access** based on the ownership and/or purchase of required products.
-* Streamlined admin interface – product dependencies are entered in a dedicated Dependencies tab.
+* Streamlined admin interface – product dependencies are entered in a dedicated **Dependencies** tab.
 * Support for multiple product dependencies.
 * Support for "ownership", "purchase" and "ownership/purchase" dependency types.
 

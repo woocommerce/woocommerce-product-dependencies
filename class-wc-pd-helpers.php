@@ -59,6 +59,51 @@ class WC_PD_Helpers {
 		return implode( '', $parts_to_merge );
 	}
 
+	public static function merge_categories_titles( $category_ids ) {
+
+		$parts_to_merge = array();
+
+		if ( ! empty( $category_ids ) ) {
+
+			$loop = 0;
+
+			foreach ( $category_ids as $category_id ) {
+
+				if ( $loop === 0 ) {
+					$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
+				} elseif ( count( $category_ids ) - 1 === $loop ) {
+					$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
+				} else {
+					$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
+				}
+
+				$category_permalink = get_term_link( $category_id, 'product_cat' );
+
+				if ( $term = get_term_by( 'id', $category_id, 'product_cat' ) ){
+					$category_title = $term->name;
+				} else {
+					continue;
+				}
+
+				if ( $category_permalink ) {
+					$part_to_merge = sprintf( $part_to_merge, sprintf( '&quot;<a href="%1$s">%2$s</a>&quot;', esc_url( $category_permalink ), $category_title ) );
+				} else {
+					$part_to_merge = sprintf( $part_to_merge, sprintf( '&quot;%s&quot;', $category_title ) );
+				}
+
+				$parts_to_merge[] = $part_to_merge;
+
+				$loop++;
+			}
+		}
+
+		if ( is_rtl() ) {
+			$parts_to_merge = array_reverse( $parts_to_merge );
+		}
+
+		return implode( '', $parts_to_merge );
+	}
+
 	/**
 	 * Return a formatted product title.
 	 *

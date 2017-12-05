@@ -200,6 +200,7 @@ class WC_Product_Dependencies {
 	public function evaluate_dependencies( $item ) {
 
 		if ( is_a( $item, 'WC_Product' ) ) {
+
 			if ( $item->is_type( 'variation' ) ) {
 				$product_id = WC_PD_Core_Compatibility::get_parent_id( $item );
 				$product    = wc_get_product( $product_id );
@@ -207,10 +208,12 @@ class WC_Product_Dependencies {
 				$product_id = WC_PD_Core_Compatibility::get_id( $item );
 				$product    = $item;
 			}
+
 		} else {
 			$product_id = absint( $item );
 			$product    = wc_get_product( $product_id );
 		}
+
 		if ( ! $product ) {
 			return;
 		}
@@ -228,21 +231,30 @@ class WC_Product_Dependencies {
 
 		// Ensure dependencies exist and are purchasable.
 		if ( ! empty( $tied_product_ids ) ) {
+
 			foreach ( $tied_product_ids as $id ) {
+
 				$tied_product = wc_get_product( $id );
+
 				if ( $tied_product && $tied_product->is_purchasable() ) {
 					$tied_products[ $id ] = $tied_product;
 				}
 			}
 		}
+
 		if ( ! empty( $tied_products ) ) {
+
 			$tied_product_ids = array_keys( $tied_products );
 			// Check cart.
 			if ( $dependency_type === 2 || $dependency_type === 3 ) {
+
 				$cart_contents = WC()->cart->cart_contents;
+
 				foreach ( $cart_contents as $cart_item ) {
+
 					$product_id   = $cart_item[ 'product_id' ];
 					$variation_id = $cart_item[ 'variation_id' ];
+
 					if ( in_array( $product_id, $tied_product_ids ) || in_array( $variation_id, $tied_product_ids ) ) {
 						return true;
 					}
@@ -250,27 +262,49 @@ class WC_Product_Dependencies {
 			}
 			// Check ownership.
 			if ( is_user_logged_in() && ( $dependency_type === 1 || $dependency_type === 3 ) ) {
+
 				$current_user = wp_get_current_user();
 				$is_owner     = false;
+
 				foreach ( $tied_product_ids as $id ) {
 					if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID, $id ) ) {
 						$is_owner = true;
+						break;
 					}
 				}
+
 				if ( ! $is_owner ) {
-					$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
+
+					if ( 'product_ids' === self::get_selection_type( $product ) ) {
+						$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
+					} elseif ( 'category_ids' === self::get_selection_type( $product ) ) {
+						$category_ids  = self::get_category_ids( $product );
+						$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids );
+						$merged_titles = sprintf( __( 'a product from the %s category', 'woocommerce-product-dependencies' ), $merged_titles );
+					}
+
 					if ( $dependency_type === 1 ) {
-						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s.', 'woocommerce-product-dependencies' ), $merged_titles, $product_title ), 'error' );
+						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to customers who have bought %1$s.', 'woocommerce-product-dependencies' ), $merged_titles, $product_title ), 'error' );
 					} else {
-						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' ), $merged_titles, $product_title ), 'error' );
+						wc_add_notice( sprintf( __( 'Access to &quot;%2$s&quot; is restricted only to customers who have bought %1$s. Alternatively, access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' ), $merged_titles, $product_title ), 'error' );
 					}
 					return false;
 				}
+
 			} else {
-				$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
+
+				if ( 'product_ids' === self::get_selection_type( $product ) ) {
+					$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
+				} elseif ( 'category_ids' === self::get_selection_type( $product ) ) {
+					$category_ids  = self::get_category_ids( $product );
+					$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids );
+					$merged_titles = sprintf( __( 'a product from the %s category', 'woocommerce-product-dependencies' ), $merged_titles );
+				}
+
 				$msg = '';
+
 				if ( $dependency_type === 1 ) {
-					$msg = __( 'Access to &quot;%2$s&quot; is restricted only to verified owners of %1$s. The verification is automatic and simply requires you to be <a href="%3$s">logged in</a>.', 'woocommerce-product-dependencies' );
+					$msg = __( 'Access to &quot;%2$s&quot; is restricted only to to customers who have bought %1$s. The verification is automatic and simply requires you to be <a href="%3$s">logged in</a>.', 'woocommerce-product-dependencies' );
 				} elseif ( $dependency_type === 2 ) {
 					$msg = __( '&quot;%2$s&quot; can be purchased only in combination with %1$s. Access to this item will be granted after adding a %1$s to the cart.', 'woocommerce-product-dependencies' );
 				} else {
@@ -294,14 +328,7 @@ class WC_Product_Dependencies {
 
 		$dependent_ids  = array();
 
-		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
-			$selection_type = $product->get_meta( '_dependency_selection_type', true );
-		} else {
-			$selection_type = (array) get_post_meta( $product_id, '_dependency_selection_type', true );
-		}
-
-		$selection_type = in_array( $selection_type, array( 'product_ids', 'category_ids' ) ) ? $selection_type : 'product_ids';
-
+		$selection_type = self::get_selection_type( $product );
 
 		if ( 'product_ids' === $selection_type ) {
 
@@ -313,11 +340,7 @@ class WC_Product_Dependencies {
 
 		} elseif ( 'category_ids' === $selection_type ) {
 
-			if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
-				$category_ids = $product->get_meta( '_tied_categories', true );
-			} else {
-				$category_ids = (array) get_post_meta( $product_id, '_tied_categories', true );
-			}
+			$category_ids = self::get_category_ids( $product );
 
 			if ( ! empty( $category_ids ) ) {
 
@@ -342,6 +365,41 @@ class WC_Product_Dependencies {
 		return $dependent_ids;
 	}
 
+	/**
+	 * Returns the product dependency selection type.
+	 *
+	 * @param  WC_Product $product
+	 * @return string     $selection_type
+	 */
+	function get_selection_type( $product ) {
+
+		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+			$selection_type = $product->get_meta( '_dependency_selection_type', true );
+		} else {
+			$selection_type = (array) get_post_meta( $product_id, '_dependency_selection_type', true );
+		}
+
+		$selection_type = in_array( $selection_type, array( 'product_ids', 'category_ids' ) ) ? $selection_type : 'product_ids';
+
+		return $selection_type;
+	}
+
+	/**
+	 * Returns an array with all saved category ids.
+	 *
+	 * @param  WC_Product $product
+	 * @return array      $category_ids
+	 */
+	function get_category_ids( $product ) {
+
+		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+			$category_ids = $product->get_meta( '_tied_categories', true );
+		} else {
+			$category_ids = (array) get_post_meta( $product_id, '_tied_categories', true );
+		}
+
+		return $category_ids;
+	}
 	/*
 	|--------------------------------------------------------------------------
 	| Admin Filters.

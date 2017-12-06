@@ -37,8 +37,11 @@ class WC_Product_Dependencies {
 	 */
 	private $required = '2.2';
 
+	/**
+	 * Product Dependencies version.
+	 */
+	public $version = '1.1.3';
 
-	public static $version = '1.1.2';
 	/**
 	 * Main WC_Product_Dependencies instance.
 	 *
@@ -83,7 +86,11 @@ class WC_Product_Dependencies {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 	}
 
-	public static function plugin_url() {
+	/**
+	 * The plugin url
+	 * @return string
+	 */
+	public function plugin_url() {
 		return plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename(__FILE__) );
 	}
 
@@ -116,7 +123,7 @@ class WC_Product_Dependencies {
 		if ( is_admin() ) {
 
 			// Admin jQuery.
-			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'dependencies_admin_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'dependencies_admin_scripts' ) );
 
 			// Save admin options.
 			if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
@@ -127,7 +134,7 @@ class WC_Product_Dependencies {
 
 			// Add the "Dependencies" tab in Product Data.
 			if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_5() ) {
-				add_action( 'woocommerce_product_data_tabs', array( __CLASS__, 'dependencies_product_data_tab' ) );
+				add_action( 'woocommerce_product_data_tabs', array( $this, 'dependencies_product_data_tab' ) );
 			} else {
 				add_action( 'woocommerce_product_write_panel_tabs', array( $this, 'dependencies_product_data_panel_tab' ) );
 			}
@@ -154,11 +161,11 @@ class WC_Product_Dependencies {
 	/**
 	 * Include scripts.
 	 */
-	public static function dependencies_admin_scripts() {
+	public function dependencies_admin_scripts() {
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		wp_register_script( 'wc-pd-writepanels', self::plugin_url() . '/assets/js/wc-pd-writepanels' . $suffix . '.js', array(), self::$version );
+		wp_register_script( 'wc-pd-writepanels', $this->plugin_url() . '/assets/js/wc-pd-writepanels' . $suffix . '.js', array(), $this->version );
 
 		$screen    = get_current_screen();
 		$screen_id = $screen ? $screen->id : '';
@@ -166,7 +173,6 @@ class WC_Product_Dependencies {
 		if ( in_array( $screen_id, array( 'product' ) ) ) {
 			wp_enqueue_script( 'wc-pd-writepanels' );
 		}
-
 
 	}
 	/**
@@ -224,7 +230,7 @@ class WC_Product_Dependencies {
 			return;
 		}
 
-		$tied_product_ids = self::get_dependent_ids( $product, $product_id );
+		$tied_product_ids = $this->get_required_ids( $product, $product_id );
 
 		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
 			$dependency_type  = absint( $product->get_meta( '_dependency_type', true ) );
@@ -281,10 +287,10 @@ class WC_Product_Dependencies {
 
 				if ( ! $is_owner ) {
 
-					if ( 'product_ids' === self::get_selection_type( $product ) ) {
+					if ( 'product_ids' === $this->get_selection_type( $product ) ) {
 						$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
-					} elseif ( 'category_ids' === self::get_selection_type( $product ) ) {
-						$category_ids  = self::get_category_ids( $product );
+					} elseif ( 'category_ids' === $this->get_selection_type( $product ) ) {
+						$category_ids  = $this->get_category_ids( $product );
 						$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids );
 						$merged_titles = sprintf( __( 'a product from the %s category', 'woocommerce-product-dependencies' ), $merged_titles );
 					}
@@ -299,10 +305,10 @@ class WC_Product_Dependencies {
 
 			} else {
 
-				if ( 'product_ids' === self::get_selection_type( $product ) ) {
+				if ( 'product_ids' === $this->get_selection_type( $product ) ) {
 					$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
-				} elseif ( 'category_ids' === self::get_selection_type( $product ) ) {
-					$category_ids  = self::get_category_ids( $product );
+				} elseif ( 'category_ids' === $this->get_selection_type( $product ) ) {
+					$category_ids  = $this->get_category_ids( $product );
 					$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids );
 					$merged_titles = sprintf( __( 'a product from the %s category', 'woocommerce-product-dependencies' ), $merged_titles );
 				}
@@ -330,11 +336,11 @@ class WC_Product_Dependencies {
 	 * @param  integer    $product_id
 	 * @return array      $dependent_ids
 	 */
-	function get_dependent_ids( $product, $product_id ) {
+	public function get_required_ids( $product, $product_id ) {
 
 		$dependent_ids  = array();
 
-		$selection_type = self::get_selection_type( $product );
+		$selection_type = $this->get_selection_type( $product );
 
 		if ( 'product_ids' === $selection_type ) {
 
@@ -346,7 +352,7 @@ class WC_Product_Dependencies {
 
 		} elseif ( 'category_ids' === $selection_type ) {
 
-			$category_ids = self::get_category_ids( $product );
+			$category_ids = $this->get_category_ids( $product );
 
 			if ( ! empty( $category_ids ) ) {
 
@@ -377,7 +383,7 @@ class WC_Product_Dependencies {
 	 * @param  WC_Product $product
 	 * @return string     $selection_type
 	 */
-	function get_selection_type( $product ) {
+	public function get_selection_type( $product ) {
 
 		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
 			$selection_type = $product->get_meta( '_dependency_selection_type', true );
@@ -396,7 +402,7 @@ class WC_Product_Dependencies {
 	 * @param  WC_Product $product
 	 * @return array      $category_ids
 	 */
-	function get_category_ids( $product ) {
+	public function get_category_ids( $product ) {
 
 		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
 			$category_ids = $product->get_meta( '_tied_categories', true );
@@ -406,6 +412,7 @@ class WC_Product_Dependencies {
 
 		return $category_ids;
 	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Admin Filters.
@@ -422,11 +429,12 @@ class WC_Product_Dependencies {
 	}
 
 	/**
-	 * Add the "Bundled Products" panel tab.
+	 * Add the "Product Dependencies" panel tab.
+	 *
 	 * @param  array  $tabs
 	 * @return array
 	 */
-	public static function dependencies_product_data_tab( $tabs ) {
+	public function dependencies_product_data_tab( $tabs ) {
 
 		$tabs[ 'dependencies' ] = array(
 			'label'  => __( 'Dependencies', 'woocommerce-product-dependencies' ),

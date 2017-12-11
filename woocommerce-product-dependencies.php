@@ -254,9 +254,12 @@ class WC_Product_Dependencies {
 			}
 		}
 
+		$modifier = apply_filters( 'wc_pd_dependency_selection_modifier', 'or' );
+
 		if ( ! empty( $tied_products ) ) {
 
 			$tied_product_ids = array_keys( $tied_products );
+			$matched_products = 0;
 			// Check cart.
 			if ( $dependency_type === 2 || $dependency_type === 3 ) {
 
@@ -268,6 +271,31 @@ class WC_Product_Dependencies {
 					$variation_id = $cart_item[ 'variation_id' ];
 
 					if ( in_array( $product_id, $tied_product_ids ) || in_array( $variation_id, $tied_product_ids ) ) {
+
+						if ( 'or' === $modifier ) {
+							return true;
+						}
+						if ( 'category_ids' === $this->get_selection_type( $product ) ) {
+
+							$category_ids  = $this->get_category_ids( $product );
+
+							foreach ( $category_ids as $category_id ) {
+
+								$category_product_ids = $this->get_category_product_ids( $category_id );
+
+								if ( ! empty( $category_product_ids ) && in_array( $product_id, $category_product_ids ) ) {
+									$matched_products = $matched_products + count( $category_product_ids );
+								}
+							}
+						} else if ( 'product_ids' === $this->get_selection_type( $product ) ) {
+							$matched_products++;
+						}
+
+					}
+				}
+
+				if ( 'and' === $modifier ) {
+					if ( $matched_products === count( $tied_products ) ) {
 						return true;
 					}
 				}
@@ -275,23 +303,57 @@ class WC_Product_Dependencies {
 			// Check ownership.
 			if ( is_user_logged_in() && ( $dependency_type === 1 || $dependency_type === 3 ) ) {
 
-				$current_user = wp_get_current_user();
-				$is_owner     = false;
+				$current_user       = wp_get_current_user();
+				$is_owner           = false;
+				$bought_products    = 0;
+				$matched_categories = array();
 
 				foreach ( $tied_product_ids as $id ) {
+
 					if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID, $id ) ) {
+
+						if ( 'or' === $modifier ) {
+							$is_owner = true;
+							break;
+						}
+
+						if ( 'product_ids' === $this->get_selection_type( $product ) ) {
+							$bought_products++;
+						} elseif ( 'category_ids' === $this->get_selection_type( $product ) ) {
+
+							$category_ids  = $this->get_category_ids( $product );
+
+							foreach ( $category_ids as $category_id ) {
+
+								$category_product_ids = $this->get_category_product_ids( $category_id );
+
+								if (  ! empty( $category_product_ids )  && in_array( $id, $category_product_ids ) ) {
+
+									if ( in_array( $category_id, $matched_categories ) ) {
+										continue;
+									} else {
+										$matched_categories[] = $category_id;
+										$bought_products      = $bought_products + count( $category_product_ids );
+									}
+								}
+							}
+						}
+					}
+				}
+
+				if ( 'and' === $modifier ) {
+					if ( $bought_products === count( $tied_product_ids ) ) {
 						$is_owner = true;
-						break;
 					}
 				}
 
 				if ( ! $is_owner ) {
 
 					if ( 'product_ids' === $this->get_selection_type( $product ) ) {
-						$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
+						$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products, $modifier );
 					} elseif ( 'category_ids' === $this->get_selection_type( $product ) ) {
 						$category_ids  = $this->get_category_ids( $product );
-						$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids );
+						$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids, $modifier );
 						$merged_titles = sprintf( __( 'a product from the %s category', 'woocommerce-product-dependencies' ), $merged_titles );
 					}
 
@@ -306,10 +368,10 @@ class WC_Product_Dependencies {
 			} else {
 
 				if ( 'product_ids' === $this->get_selection_type( $product ) ) {
-					$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products );
+					$merged_titles = WC_PD_Helpers::merge_product_titles( $tied_products, $modifier );
 				} elseif ( 'category_ids' === $this->get_selection_type( $product ) ) {
 					$category_ids  = $this->get_category_ids( $product );
-					$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids );
+					$merged_titles = WC_PD_Helpers::merge_categories_titles( $category_ids, $modifier );
 					$merged_titles = sprintf( __( 'a product from the %s category', 'woocommerce-product-dependencies' ), $merged_titles );
 				}
 
@@ -411,6 +473,38 @@ class WC_Product_Dependencies {
 		}
 
 		return $category_ids;
+	}
+
+	/**
+	 * Returns an array with all product IDs in a category
+	 *
+	 * @param  integer    $category_id
+	 * @return array      $product_ids
+	 */
+	public function get_category_product_ids( $category_id ) {
+
+		$product_ids = array();
+
+			if ( ! empty( $category_id ) ) {
+
+				$query_results = new WP_Query( array(
+					'post_type'   => 'product',
+					'post_status' => 'publish',
+					'fields'      => 'ids',
+					'tax_query'   => array(
+						array(
+							'taxonomy' => 'product_cat',
+							'field'    => 'term_id',
+							'terms'    => $category_id,
+							'operator' => 'IN',
+						)
+					)
+				) );
+
+				$product_ids = $query_results->posts;
+			}
+
+		return $product_ids;
 	}
 
 	/*

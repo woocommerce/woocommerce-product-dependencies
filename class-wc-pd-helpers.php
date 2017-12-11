@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_PD_Helpers {
 
-	public static function merge_product_titles( $products ) {
+	public static function merge_product_titles( $products, $modifier ) {
 
 		$parts_to_merge = array();
 
@@ -32,7 +32,12 @@ class WC_PD_Helpers {
 				if ( $loop === 0 ) {
 					$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
 				} elseif ( count( $products ) - 1 === $loop ) {
-					$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
+					if ( 'or' === $modifier ) {
+						$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
+					} elseif ( 'and' === $modifier ) {
+						$part_to_merge = __( ' and %s', 'woocommerce-product-dependencies' );
+					}
+
 				} else {
 					$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
 				}
@@ -59,7 +64,7 @@ class WC_PD_Helpers {
 		return implode( '', $parts_to_merge );
 	}
 
-	public static function merge_categories_titles( $category_ids ) {
+	public static function merge_categories_titles( $category_ids, $modifier ) {
 
 		$parts_to_merge = array();
 
@@ -72,7 +77,11 @@ class WC_PD_Helpers {
 				if ( $loop === 0 ) {
 					$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
 				} elseif ( count( $category_ids ) - 1 === $loop ) {
-					$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
+					if ( 'or' === $modifier ) {
+						$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
+					} elseif ( 'and' === $modifier ) {
+						$part_to_merge = __( ' and %s', 'woocommerce-product-dependencies' );
+					}
 				} else {
 					$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
 				}

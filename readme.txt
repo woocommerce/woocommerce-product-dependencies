@@ -67,6 +67,10 @@ The plugin allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 1.2.0 =
+* Feature - Introduced category-based dependencies.
+* Tweak - Tweaked notices.
+
 = 1.1.3 =
 * Tweak - Updated description.
 * Tweak - Added WooCommerce version headers.
@@ -110,4 +114,4 @@ The plugin allows you to select between 3 different dependency types:
 == Upgrade Notice ==
 
 = 1.1.3 =
-Added WooCommerce version headers.
+Added category-based dependencies.

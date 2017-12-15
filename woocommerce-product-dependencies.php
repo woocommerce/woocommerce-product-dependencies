@@ -351,6 +351,8 @@ class WC_Product_Dependencies {
 	/**
 	 * Returns an array with all dependent product ids.
 	 *
+	 * @since  1.2.0
+	 *
 	 * @param  WC_Product  $product
 	 * @return array       $dependent_ids
 	 */
@@ -368,6 +370,8 @@ class WC_Product_Dependencies {
 	/**
 	 * Returns an array with all saved category ids.
 	 *
+	 * @since  1.2.0
+	 *
 	 * @param  WC_Product  $product
 	 * @return array       $category_ids
 	 */
@@ -384,6 +388,8 @@ class WC_Product_Dependencies {
 
 	/**
 	 * Returns the product dependency selection type.
+	 *
+	 * @since  1.2.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return string      $selection_type
@@ -403,6 +409,8 @@ class WC_Product_Dependencies {
 
 	/**
 	 * Returns the product dependency type.
+	 *
+	 * @since  1.2.0
 	 *
 	 * @param  WC_Product  $product
 	 * @return string      $type

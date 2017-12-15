@@ -23,6 +23,8 @@ class WC_PD_Helpers {
 	/**
 	 * Expression of part to merge.
 	 *
+	 * @since  1.2.0
+	 *
 	 * @param  int  $loop
 	 * @param  int  $count
 	 * @return string
@@ -81,6 +83,8 @@ class WC_PD_Helpers {
 
 	/**
 	 * Merges category titles.
+	 *
+	 * @since  1.2.0
 	 *
 	 * @param  array  $category_ids
 	 * @return string

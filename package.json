@@ -6,7 +6,7 @@
 		"url": "https://github.com/somewherewarm/woocommerce-product-dependencies.git"
 	},
 	"license": "GPL-3.0+",
-	"version": "1.1.3",
+	"version": "1.2.0",
 	"main": "Gruntfile.js",
 	"devDependencies": {
 		"grunt": "~1.0.1",

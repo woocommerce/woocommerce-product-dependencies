@@ -312,16 +312,12 @@ class WC_Product_Dependencies {
 			if ( is_user_logged_in() && ( $dependency_type === 1 || $dependency_type === 3 ) ) {
 
 				$current_user = wp_get_current_user();
-				$is_owner     = false;
 
-				foreach ( $tied_product_ids as $id ) {
-					if ( wc_customer_bought_product( $current_user->user_email, $current_user->ID, $id ) ) {
-						$is_owner = true;
-						break;
-					}
+				if ( 'category_ids' === $dependency_selection_type ) {
+					$tied_product_ids = $this->get_product_ids_in_categories( $tied_category_ids );
 				}
 
-				if ( ! $is_owner ) {
+				if ( false === $this->customer_bought_product( $current_user->user_email, $current_user->ID, $tied_product_ids ) ) {
 
 					if ( $dependency_type === 1 ) {
 						wc_add_notice( sprintf( __( 'Access to &quot;%1$s&quot; is restricted to customers who have previously purchased %2$s.', 'woocommerce-product-dependencies' ), $product_title, $merged_titles ), 'error' );
@@ -422,6 +418,96 @@ class WC_Product_Dependencies {
 		$type = in_array( $type, array( 1, 2, 3 ) ) ? $type : 3;
 
 		return $type;
+	}
+
+	/**
+	 * Get all product IDs that belong to the specified categories.
+	 *
+	 * @param  array  $category_ids
+	 * @return array
+	 */
+	private function get_product_ids_in_categories( $category_ids ) {
+
+		$query_results = new WP_Query( array(
+			'post_type'   => array( 'product', 'product_variation' ),
+			'fields'      => 'ids',
+			'tax_query'   => array(
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'term_id',
+					'terms'    => $category_ids,
+					'operator' => 'IN',
+				)
+			)
+		) );
+
+		return $query_results->posts;
+	}
+
+	/**
+	 * Re-implementation of 'wc_customer_bought_product' with support for array input.
+	 *
+	 * @since  1.2.0
+	 *
+	 * @param  string  $customer_email
+	 * @param  int     $user_id
+	 * @param  array   $product_ids
+	 * @return boolean
+	 */
+	private function customer_bought_product( $customer_email, $user_id, $product_ids ) {
+
+		global $wpdb;
+
+		$results = apply_filters( 'wc_pd_pre_customer_bought_product', null, $customer_email, $user_id, $product_ids );
+
+		if ( null !== $results ) {
+			return $results;
+		}
+
+		$transient_name = 'wc_cbp_' . md5( $customer_email . $user_id . WC_Cache_Helper::get_transient_version( 'orders' ) );
+
+		if ( false === ( $results = get_transient( $transient_name ) ) ) {
+
+			$customer_data = array( $user_id );
+
+			if ( $user_id ) {
+
+				$user = get_user_by( 'id', $user_id );
+
+				if ( isset( $user->user_email ) ) {
+					$customer_data[] = $user->user_email;
+				}
+			}
+
+			if ( is_email( $customer_email ) ) {
+				$customer_data[] = $customer_email;
+			}
+
+			$customer_data = array_map( 'esc_sql', array_filter( array_unique( $customer_data ) ) );
+			$statuses      = array_map( 'esc_sql', wc_get_is_paid_statuses() );
+
+			if ( sizeof( $customer_data ) == 0 ) {
+				return false;
+			}
+
+			$results = $wpdb->get_col( "
+				SELECT im.meta_value FROM {$wpdb->posts} AS p
+				INNER JOIN {$wpdb->postmeta} AS pm ON p.ID = pm.post_id
+				INNER JOIN {$wpdb->prefix}woocommerce_order_items AS i ON p.ID = i.order_id
+				INNER JOIN {$wpdb->prefix}woocommerce_order_itemmeta AS im ON i.order_item_id = im.order_item_id
+				WHERE p.post_status IN ( 'wc-" . implode( "','wc-", $statuses ) . "' )
+				AND pm.meta_key IN ( '_billing_email', '_customer_user' )
+				AND im.meta_key IN ( '_product_id', '_variation_id' )
+				AND im.meta_value != 0
+				AND pm.meta_value IN ( '" . implode( "','", $customer_data ) . "' )
+			" );
+
+			$results = array_map( 'absint', $results );
+
+			set_transient( $transient_name, $results, DAY_IN_SECONDS * 30 );
+		}
+
+		return sizeof( array_intersect( $results, $product_ids ) );
 	}
 
 	/*

@@ -16,9 +16,36 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Helper functions.
  *
  * @class    WC_PD_Helpers
+ * @version  1.2.0
  */
 class WC_PD_Helpers {
 
+	/**
+	 * Expression of part to merge.
+	 *
+	 * @param  int  $loop
+	 * @param  int  $count
+	 * @return string
+	 */
+	private static function get_part_to_merge_expression( $loop, $count ) {
+
+		if ( $loop === 0 ) {
+			$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
+		} elseif ( $count - 1 === $loop ) {
+			$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
+		} else {
+			$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
+		}
+
+		return $part_to_merge;
+	}
+
+	/**
+	 * Merges product titles.
+	 *
+	 * @param  array  $products
+	 * @return string
+	 */
 	public static function merge_product_titles( $products ) {
 
 		$parts_to_merge = array();
@@ -29,14 +56,7 @@ class WC_PD_Helpers {
 
 			foreach ( $products as $product_id => $product ) {
 
-				if ( $loop === 0 ) {
-					$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
-				} elseif ( count( $products ) - 1 === $loop ) {
-					$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
-				} else {
-					$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
-				}
-
+				$part_to_merge     = self::get_part_to_merge_expression( $loop, count( $products ) );
 				$product_permalink = $product->is_visible() ? $product->get_permalink() : '';
 				$product_title     = WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ? $product->get_name() : $product->get_title();
 
@@ -59,7 +79,13 @@ class WC_PD_Helpers {
 		return implode( '', $parts_to_merge );
 	}
 
-	public static function merge_categories_titles( $category_ids ) {
+	/**
+	 * Merges category titles.
+	 *
+	 * @param  array  $category_ids
+	 * @return string
+	 */
+	public static function merge_category_titles( $category_ids ) {
 
 		$parts_to_merge = array();
 
@@ -69,14 +95,7 @@ class WC_PD_Helpers {
 
 			foreach ( $category_ids as $category_id ) {
 
-				if ( $loop === 0 ) {
-					$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
-				} elseif ( count( $category_ids ) - 1 === $loop ) {
-					$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
-				} else {
-					$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
-				}
-
+				$part_to_merge      = self::get_part_to_merge_expression( $loop, count( $category_ids ) );
 				$category_permalink = get_term_link( $category_id, 'product_cat' );
 
 				if ( $term = get_term_by( 'id', $category_id, 'product_cat' ) ){

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Product Dependencies 1.2.0\n"
 "Report-Msgid-Bugs-To: support@somewherewarm.gr\n"
-"POT-Creation-Date: 2017-12-15 13:37:23+00:00\n"
+"POT-Creation-Date: 2017-12-20 12:33:01+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,113 +13,172 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n1.0.1\n"
 
-#: class-wc-pd-helpers.php:35
+#: class-wc-pd-helpers.php:36
 msgid "%s"
 msgstr ""
 
-#: class-wc-pd-helpers.php:37
+#: class-wc-pd-helpers.php:38
+msgid " and %s"
+msgstr ""
+
+#: class-wc-pd-helpers.php:38
 msgid " or %s"
 msgstr ""
 
-#: class-wc-pd-helpers.php:39
+#: class-wc-pd-helpers.php:40
 msgid ", %s"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:68
-#: woocommerce-product-dependencies.php:77
+#: woocommerce-product-dependencies.php:83
+#: woocommerce-product-dependencies.php:92
 msgid "Foul!"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:274
+#: woocommerce-product-dependencies.php:414
+msgid "all required products"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:415
+msgid "these products"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:417
+msgid "a required product"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:429
+msgid "one or more products from the %s categories"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:430
+msgid "one or more products from all required categories"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:432
+#: woocommerce-product-dependencies.php:436
 msgid "a product from the %s category"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:280
+#: woocommerce-product-dependencies.php:433
 msgid "a qualifying product"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:323
+#: woocommerce-product-dependencies.php:444
 msgid ""
 "Access to &quot;%1$s&quot; is restricted to customers who have previously "
 "purchased %2$s."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:325
+#: woocommerce-product-dependencies.php:446
 msgid ""
-"&quot;%1$s&quot; requires the purchase of %2$s. To get access to this "
-"product now, please add %3$s to your cart."
+"Access to &quot;%1$s&quot; is restricted to customers who have previously "
+"purchased %2$s. Please <a href=\"%3$s\">log in</a> to validate ownership "
+"and try again."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:335
+#: woocommerce-product-dependencies.php:465
+msgid "a product"
+msgid_plural "some products"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce-product-dependencies.php:466
+msgid "%1$s from the %2$s category"
+msgid_plural "%1$s from the %2$s categories"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce-product-dependencies.php:469
+msgid "one or more products from the %s category"
+msgid_plural "one or more products from the %s categories"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce-product-dependencies.php:472
 msgid ""
-"&quot;%1$s&quot; requires the purchase of %2$s. If you have previously "
-"purchased %3$s, please <a href=\"%4$s\">log in</a> to verify ownership."
+"&quot;%1$s&quot; requires purchasing %2$s. Please add %3$s to your cart and "
+"try again (you have already purchased %4$s)."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:337
+#: woocommerce-product-dependencies.php:478
 msgid ""
-"&quot;%1$s&quot; requires the purchase of %2$s. To get access to this "
-"product, please add %3$s to your cart."
+"&quot;%1$s&quot; requires purchasing %2$s. To get access to this product "
+"now, please add %3$s to your cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:339
+#: woocommerce-product-dependencies.php:485
 msgid ""
-"&quot;%1$s&quot; requires the purchase of %2$s. If you have previously "
-"purchased %3$s, please <a href=\"%4$s\">log in</a> to verify ownership and "
-"retry. Alternatively, please add %3$s to your cart."
+"&quot;%1$s&quot; requires purchasing %2$s. If you have previously purchased "
+"%3$s, please <a href=\"%5$s\">log in</a> to verify ownership and try again. "
+"Alternatively, get access to &quot;%1$s&quot; now by adding %4$s to your "
+"cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:533
-#: woocommerce-product-dependencies.php:545
+#: woocommerce-product-dependencies.php:492
+msgid ""
+"&quot;%1$s&quot; is only available in combination with %2$s. To purchase "
+"this product, please add %3$s to your cart."
+msgstr ""
+
+#: woocommerce-product-dependencies.php:718
+#: woocommerce-product-dependencies.php:730
 msgid "Dependencies"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:604
-#: woocommerce-product-dependencies.php:614
+#: woocommerce-product-dependencies.php:790
+#: woocommerce-product-dependencies.php:800
 msgid "Product Dependencies"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:606
+#: woocommerce-product-dependencies.php:792
 msgid "Select products"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:607
+#: woocommerce-product-dependencies.php:793
 msgid "Select categories"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:623
+#: woocommerce-product-dependencies.php:809
 msgid "Search for products and variations&hellip;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:636
-#: woocommerce-product-dependencies.php:644
+#: woocommerce-product-dependencies.php:822
+#: woocommerce-product-dependencies.php:830
 msgid "Search for products&hellip;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:656
+#: woocommerce-product-dependencies.php:842
 msgid ""
 "Restrict product access based on the ownership or purchase of "
 "<strong>any</strong> product or variation added to this list."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:664
+#: woocommerce-product-dependencies.php:850
 msgid "Select product categories&hellip;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:679
+#: woocommerce-product-dependencies.php:865
 msgid "Dependency Type"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:682
+#: woocommerce-product-dependencies.php:868
 msgid "Ownership"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:683
+#: woocommerce-product-dependencies.php:869
 msgid "Purchase"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:684
+#: woocommerce-product-dependencies.php:870
 msgid "Either"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:878
+msgid "Custom notice"
+msgstr ""
+
+#: woocommerce-product-dependencies.php:879
+msgid "Notice to display."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
@@ -144,32 +203,32 @@ msgstr ""
 msgid "https://somewherewarm.gr/"
 msgstr ""
 
-#: class-wc-pd-helpers.php:177
+#: class-wc-pd-helpers.php:180
 msgctxt "product title followed by meta and sku in parenthesis"
 msgid "%1$s &ndash; %2$s (%3$s)"
 msgstr ""
 
-#: class-wc-pd-helpers.php:179
+#: class-wc-pd-helpers.php:182
 msgctxt "sku followed by product title and meta"
 msgid "%1$s &ndash; %2$s &ndash; %3$s"
 msgstr ""
 
-#: class-wc-pd-helpers.php:183
+#: class-wc-pd-helpers.php:186
 msgctxt "product title followed by sku in parenthesis"
 msgid "%1$s (%2$s)"
 msgstr ""
 
-#: class-wc-pd-helpers.php:185
+#: class-wc-pd-helpers.php:188
 msgctxt "sku followed by product title"
 msgid "%1$s &ndash; %2$s"
 msgstr ""
 
-#: class-wc-pd-helpers.php:189
+#: class-wc-pd-helpers.php:192
 msgctxt "product title followed by meta in parenthesis"
 msgid "%1$s (%2$s)"
 msgstr ""
 
-#: class-wc-pd-helpers.php:191
+#: class-wc-pd-helpers.php:194
 msgctxt "product title followed by meta"
 msgid "%1$s &ndash; %2$s"
 msgstr ""

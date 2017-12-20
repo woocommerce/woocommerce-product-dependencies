@@ -25,16 +25,17 @@ class WC_PD_Helpers {
 	 *
 	 * @since  1.2.0
 	 *
-	 * @param  int  $loop
-	 * @param  int  $count
+	 * @param  int     $loop
+	 * @param  int     $count
+	 * @param  string  $relationship
 	 * @return string
 	 */
-	private static function get_part_to_merge_expression( $loop, $count ) {
+	private static function get_part_to_merge_expression( $loop, $count, $relationship ) {
 
 		if ( $loop === 0 ) {
 			$part_to_merge = __( '%s', 'woocommerce-product-dependencies' );
 		} elseif ( $count - 1 === $loop ) {
-			$part_to_merge = __( ' or %s', 'woocommerce-product-dependencies' );
+			$part_to_merge = 'and' === $relationship ? __( ' and %s', 'woocommerce-product-dependencies' ) : __( ' or %s', 'woocommerce-product-dependencies' );
 		} else {
 			$part_to_merge = __( ', %s', 'woocommerce-product-dependencies' );
 		}
@@ -45,10 +46,11 @@ class WC_PD_Helpers {
 	/**
 	 * Merges product titles.
 	 *
-	 * @param  array  $products
+	 * @param  array   $products
+	 * @param  string  $relationship
 	 * @return string
 	 */
-	public static function merge_product_titles( $products ) {
+	public static function merge_product_titles( $products, $relationship ) {
 
 		$parts_to_merge = array();
 
@@ -58,7 +60,7 @@ class WC_PD_Helpers {
 
 			foreach ( $products as $product_id => $product ) {
 
-				$part_to_merge     = self::get_part_to_merge_expression( $loop, count( $products ) );
+				$part_to_merge     = self::get_part_to_merge_expression( $loop, count( $products ), $relationship );
 				$product_permalink = $product->is_visible() ? $product->get_permalink() : '';
 				$product_title     = WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ? $product->get_name() : $product->get_title();
 
@@ -86,10 +88,11 @@ class WC_PD_Helpers {
 	 *
 	 * @since  1.2.0
 	 *
-	 * @param  array  $category_ids
+	 * @param  array   $category_ids
+	 * @param  string  $relationship
 	 * @return string
 	 */
-	public static function merge_category_titles( $category_ids ) {
+	public static function merge_category_titles( $category_ids, $relationship ) {
 
 		$parts_to_merge = array();
 
@@ -99,7 +102,7 @@ class WC_PD_Helpers {
 
 			foreach ( $category_ids as $category_id ) {
 
-				$part_to_merge      = self::get_part_to_merge_expression( $loop, count( $category_ids ) );
+				$part_to_merge      = self::get_part_to_merge_expression( $loop, count( $category_ids ), $relationship );
 				$category_permalink = get_term_link( $category_id, 'product_cat' );
 
 				if ( $term = get_term_by( 'id', $category_id, 'product_cat' ) ){

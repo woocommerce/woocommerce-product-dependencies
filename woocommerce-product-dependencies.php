@@ -4,7 +4,7 @@
 * Plugin Name: WooCommerce Product Dependencies
 * Plugin URI: http://somewherewarm.gr/
 * Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, required products.
-* Version: 1.2.0
+* Version: 1.2.0-dev
 * Author: SomewhereWarm
 * Author URI: https://somewherewarm.gr/
 *
@@ -40,7 +40,7 @@ class WC_Product_Dependencies {
 	/**
 	 * Product Dependencies version.
 	 */
-	public $version = '1.2.0';
+	public $version = '1.2.0-dev';
 
 	/**
 	 * 'Ownership' dependency type code.

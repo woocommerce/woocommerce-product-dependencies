@@ -889,7 +889,7 @@ class WC_Product_Dependencies {
 
 			$tied_categories = array_map( 'intval', $_POST[ 'tied_categories' ] );
 
-			$product->update_meta_data( '_tied_categories', $tied_categories, true );
+			$product->update_meta_data( '_tied_categories', $tied_categories );
 
 		} else {
 
@@ -897,7 +897,9 @@ class WC_Product_Dependencies {
 		}
 
 		if ( ! isset( $_POST[ 'tied_products' ] ) || empty( $_POST[ 'tied_products' ] ) ) {
+
 			$product->delete_meta_data( '_tied_products' );
+
 		} elseif ( isset( $_POST[ 'tied_products' ] ) && ! empty( $_POST[ 'tied_products' ] ) ) {
 
 			$tied_ids = $_POST[ 'tied_products' ];
@@ -908,19 +910,19 @@ class WC_Product_Dependencies {
 				$tied_ids = array_filter( array_map( 'intval', explode( ',', $tied_ids ) ) );
 			}
 
-			$product->update_meta_data( '_tied_products', $tied_ids, true );
+			$product->update_meta_data( '_tied_products', $tied_ids );
 		}
 
 		if ( ! empty( $_POST[ 'dependency_type' ] ) ) {
-			$product->update_meta_data( '_dependency_type', stripslashes( $_POST[ 'dependency_type' ] ), true );
+			$product->update_meta_data( '_dependency_type', stripslashes( $_POST[ 'dependency_type' ] ) );
 		}
 
 		if ( ! empty( $_POST[ 'product_dependencies_dropdown' ] ) ) {
-			$product->update_meta_data( '_dependency_selection_type', stripslashes( $_POST[ 'product_dependencies_dropdown' ] ), true );
+			$product->update_meta_data( '_dependency_selection_type', stripslashes( $_POST[ 'product_dependencies_dropdown' ] ) );
 		}
 
-		if ( ! empty( $_POST[ 'dependency_notice' ] ) ) { error_log( $_POST[ 'dependency_notice' ] );
-			$product->update_meta_data( '_dependency_notice', wp_kses_post( stripslashes( $_POST[ 'dependency_notice' ] ), true ) );
+		if ( ! empty( $_POST[ 'dependency_notice' ] ) ) {
+			$product->update_meta_data( '_dependency_notice', wp_kses_post( stripslashes( $_POST[ 'dependency_notice' ] ) ) );
 		} else {
 			$product->delete_meta_data( '_dependency_notice' );
 		}

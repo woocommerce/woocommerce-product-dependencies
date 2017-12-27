@@ -565,7 +565,7 @@ class WC_Product_Dependencies {
 		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
 			$selection_type = $product->get_meta( '_dependency_selection_type', true );
 		} else {
-			$selection_type = (array) get_post_meta( $product->id, '_dependency_selection_type', true );
+			$selection_type = get_post_meta( $product->id, '_dependency_selection_type', true );
 		}
 
 		$selection_type = in_array( $selection_type, array( 'product_ids', 'category_ids' ) ) ? $selection_type : 'product_ids';
@@ -744,30 +744,23 @@ class WC_Product_Dependencies {
 
 		global $post, $product_object;
 
-		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
-
-			$tied_products     = $this->get_tied_product_ids( $product_object );
-			$tied_categories   = $this->get_tied_category_ids( $product_object );
-			$dependency_type   = $this->get_dependency_type( $product_object );
-			$selection_type    = $this->get_dependency_selection_type( $product_object );
-			$dependency_notice = $this->get_dependency_notice( $product_object );
-
-		} else {
-
-			$tied_products     = get_post_meta( $post->ID, '_tied_products', true );
-			$tied_categories   = get_post_meta( $post->ID, '_tied_categories', true );
-			$dependency_type   = get_post_meta( $post->ID, '_dependency_type', true );
-			$selection_type    = get_post_meta( $post->ID, '_dependency_selection_type', true );
-			$dependency_notice = get_post_meta( $post->ID, '_dependency_notice', true );
-
-			if ( ! $dependency_type ) {
-				$dependency_type = self::DEPENDENCY_TYPE_EITHER;
-			}
+		if ( empty( $product_object ) || ! is_a( $product_object, 'WC_Product' ) ) {
+			$product_object = wc_get_product( $post->ID );
 		}
 
-		$product_id_options  = array();
-		$product_categories  = (array) get_terms( 'product_cat', array( 'get' => 'all' ) );
-		$selection_type      = in_array( $selection_type, array( 'product_ids', 'category_ids' ) ) ? $selection_type : 'product_ids';
+		if ( ! $product_object ) {
+			return;
+		}
+
+		$tied_products      = $this->get_tied_product_ids( $product_object );
+		$tied_categories    = $this->get_tied_category_ids( $product_object );
+		$dependency_type    = $this->get_dependency_type( $product_object );
+		$selection_type     = $this->get_dependency_selection_type( $product_object );
+		$dependency_notice  = $this->get_dependency_notice( $product_object );
+
+		$product_id_options = array();
+		$product_categories = (array) get_terms( 'product_cat', array( 'get' => 'all' ) );
+		$selection_type     = in_array( $selection_type, array( 'product_ids', 'category_ids' ) ) ? $selection_type : 'product_ids';
 
 		if ( $tied_products ) {
 			foreach ( $tied_products as $item_id ) {

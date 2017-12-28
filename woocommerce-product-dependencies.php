@@ -780,7 +780,7 @@ class WC_Product_Dependencies {
 
 				woocommerce_wp_select( array(
 					'id'      => 'product_dependencies_dropdown',
-					'label'   => __( 'Product Dependencies', 'woocommerce-product-dependencies' ),
+					'label'   => __( 'Product dependencies', 'woocommerce-product-dependencies' ),
 					'options' => array(
 						'product_ids'  => __( 'Select products', 'woocommerce-product-dependencies' ),
 						'category_ids' => __( 'Select categories', 'woocommerce-product-dependencies' )
@@ -790,7 +790,7 @@ class WC_Product_Dependencies {
 			?>
 
 			<label>
-				<?php _e( 'Product Dependencies', 'woocommerce-product-dependencies' ); ?>
+				<?php _e( 'Product dependencies', 'woocommerce-product-dependencies' ); ?>
 			</label>
 
 			<div id="product_ids_dependencies_choice" class="form-field">
@@ -855,7 +855,7 @@ class WC_Product_Dependencies {
 
 			<div class="form-field">
 				<p class="form-field">
-					<label><?php _e( 'Dependency Type', 'woocommerce-product-dependencies' ); ?>
+					<label><?php _e( 'Dependency type', 'woocommerce-product-dependencies' ); ?>
 					</label>
 					<select name="dependency_type" id="dependency_type" style="min-width:150px;">
 						<option value="1" <?php echo $dependency_type == self::DEPENDENCY_TYPE_OWNERSHIP ? 'selected="selected"' : ''; ?>><?php _e( 'Ownership', 'woocommerce-product-dependencies' ); ?></option>

@@ -605,7 +605,7 @@ class WC_Product_Dependencies {
 		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
 			$type = absint( $product->get_meta( '_dependency_type', true ) );
 		} else {
-			$type = absint( get_post_meta( $product_id, '_dependency_type', true ) );
+			$type = absint( get_post_meta( $product->id, '_dependency_type', true ) );
 		}
 
 		$type = in_array( $type, array( self::DEPENDENCY_TYPE_OWNERSHIP, self::DEPENDENCY_TYPE_PURCHASE, self::DEPENDENCY_TYPE_EITHER ) ) ? $type : self::DEPENDENCY_TYPE_EITHER;
@@ -977,6 +977,9 @@ class WC_Product_Dependencies {
 
 		if ( ! empty( $_POST[ 'dependency_notice' ] ) ) {
 			update_post_meta( $post_id, '_dependency_notice', wp_kses_post( stripslashes( $_POST[ 'dependency_notice' ] ) ) );
+		} else {
+
+			delete_post_meta( $post_id, '_dependency_notice' );
 		}
 	}
 

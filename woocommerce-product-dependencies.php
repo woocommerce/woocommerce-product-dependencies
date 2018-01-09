@@ -677,7 +677,12 @@ class WC_Product_Dependencies {
 			}
 
 			$customer_data = array_map( 'esc_sql', array_filter( array_unique( $customer_data ) ) );
-			$statuses      = array_map( 'esc_sql', wc_get_is_paid_statuses() );
+
+			if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+				$statuses = array_map( 'esc_sql', wc_get_is_paid_statuses() );
+			} else {
+				$statuses = array_map( 'esc_sql', apply_filters( 'woocommerce_order_is_paid_statuses', array( 'processing', 'completed' ) ) );
+			}
 
 			if ( sizeof( $customer_data ) == 0 ) {
 				return false;

@@ -1,14 +1,14 @@
-# Copyright (C) 2017 SomewhereWarm
+# Copyright (C) 2018 SomewhereWarm
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Product Dependencies 1.2.0-dev\n"
 "Report-Msgid-Bugs-To: support@somewherewarm.gr\n"
-"POT-Creation-Date: 2017-12-27 12:33:55+00:00\n"
+"POT-Creation-Date: 2018-01-09 14:39:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n1.0.1\n"
@@ -120,64 +120,64 @@ msgid ""
 "this product, please add %3$s to your cart."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:718
-#: woocommerce-product-dependencies.php:730
+#: woocommerce-product-dependencies.php:723
+#: woocommerce-product-dependencies.php:735
 msgid "Dependencies"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:783
-#: woocommerce-product-dependencies.php:793
-msgid "Product Dependencies"
+#: woocommerce-product-dependencies.php:788
+#: woocommerce-product-dependencies.php:798
+msgid "Product dependencies"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:785
+#: woocommerce-product-dependencies.php:790
 msgid "Select products"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:786
+#: woocommerce-product-dependencies.php:791
 msgid "Select categories"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:802
+#: woocommerce-product-dependencies.php:807
 msgid "Search for products and variations&hellip;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:815
-#: woocommerce-product-dependencies.php:823
+#: woocommerce-product-dependencies.php:820
+#: woocommerce-product-dependencies.php:828
 msgid "Search for products&hellip;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:835
+#: woocommerce-product-dependencies.php:840
 msgid ""
 "Restrict product access based on the ownership or purchase of "
 "<strong>any</strong> product or variation added to this list."
 msgstr ""
 
-#: woocommerce-product-dependencies.php:843
+#: woocommerce-product-dependencies.php:848
 msgid "Select product categories&hellip;"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:858
-msgid "Dependency Type"
+#: woocommerce-product-dependencies.php:863
+msgid "Dependency type"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:861
+#: woocommerce-product-dependencies.php:866
 msgid "Ownership"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:862
+#: woocommerce-product-dependencies.php:867
 msgid "Purchase"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:863
+#: woocommerce-product-dependencies.php:868
 msgid "Either"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:871
+#: woocommerce-product-dependencies.php:876
 msgid "Custom notice"
 msgstr ""
 
-#: woocommerce-product-dependencies.php:872
+#: woocommerce-product-dependencies.php:877
 msgid "Notice to display."
 msgstr ""
 

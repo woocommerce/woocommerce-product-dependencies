@@ -18,14 +18,7 @@ jQuery( function( $ ) {
 	initialize();
 
 	$product_dependencies_dropdown.change( function() {
-		if ( $product_dependencies_dropdown.val() == 'product_ids' ) {
-			$product_ids_dependencies_choice.show();
-			$category_ids_dependencies_choice.hide();
-
-		} else {
-			$category_ids_dependencies_choice.show();
-			$product_ids_dependencies_choice.hide();
-
-		}
+		initialize();
 	} );
+
 } );

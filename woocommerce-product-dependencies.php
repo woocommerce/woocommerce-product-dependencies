@@ -279,8 +279,8 @@ class WC_Product_Dependencies {
 
 		if ( $dependencies_exist ) {
 
-			$purchase_dependency_result  = true;
-			$ownership_dependency_result = true;
+			$purchase_dependency_result  = false;
+			$ownership_dependency_result = false;
 
 			$purchased_product_ids = array();
 			$purchased_cat_ids     = array();
@@ -295,8 +295,6 @@ class WC_Product_Dependencies {
 
 			// Check cart.
 			if ( in_array( $dependency_type, array( self::DEPENDENCY_TYPE_PURCHASE, self::DEPENDENCY_TYPE_EITHER ) ) ) {
-
-				$purchase_dependency_result = false;
 
 				$cart_contents = WC()->cart->cart_contents;
 
@@ -348,8 +346,6 @@ class WC_Product_Dependencies {
 			// Check ownership.
 			if ( in_array( $dependency_type, array( self::DEPENDENCY_TYPE_OWNERSHIP, self::DEPENDENCY_TYPE_EITHER ) ) ) {
 
-				$ownership_dependency_result = false;
-
 				if ( is_user_logged_in() ) {
 
 					$current_user = wp_get_current_user();
@@ -388,13 +384,13 @@ class WC_Product_Dependencies {
 							}
 
 						} else {
-							$ownership_dependency_result = sizeof( $owned_ids );
+							$ownership_dependency_result = sizeof( $owned_product_ids );
 						}
 					}
 				}
 			}
 
-			$result = $ownership_dependency_result && $purchase_dependency_result;
+			$result = $ownership_dependency_result || $purchase_dependency_result;
 
 			// Show notice.
 			if ( false === $result ) {

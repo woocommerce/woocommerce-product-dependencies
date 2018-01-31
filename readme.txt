@@ -23,7 +23,7 @@ Features:
 * Support for multiple product dependencies.
 * Support for "ownership", "purchase" and "ownership/purchase" dependency types.
 
-Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/franticpsyx/woocommerce-product-dependencies/).
+Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/somewherewarm/woocommerce-product-dependencies/).
 
 **Important**: Requires WooCommerce 2.2+. WooCommerce 3.0+ or higher recommended.
 
@@ -39,14 +39,14 @@ Developers can checkout and contribute to the source code on the plugin's [GitHu
 
 == Documentation ==
 
-The product dependencies of a product are always evaluated when a customer attempts to add it to the cart. If validation fails, the product cannot be added to the cart and a notice is displayed to the customer. In order to evaluate "Ownership"-type dependencies, the customer might be prompted to log in.
+Dependencies are evaluated when customers attempt to add a product to their cart. If validation fails, the product cannot be added to the cart and a notice is displayed. In order to evaluate "Ownership"-type dependencies, customers are prompted to log in.
 
 = Creating Dependencies =
 
 To add dependencies to a product:
 
 * Go to the **Product Data > Dependencies** tab.
-* Use the **Product Dependencies** field to search and add some products.
+* Use the **Product Dependencies** field to search for and add some products and/or variations.
 * Choose a **Dependency Type**.
 * **Update** to save your changes.
 
@@ -62,8 +62,8 @@ The plugin allows you to select between 3 different dependency types:
 
 == Screenshots ==
 
-1. Product dependencies can be created by simply clicking on the new **Dependencies** tab, found under **Product Data**, and adding products to the **Product Dependencies** field.
-2. If the ownership and/or purchase criteria are not met, products with dependencies cannot be added to the cart and a notification will be displayed, such as this one.
+1. Product dependencies can be created from the **Dependencies** tab, found under **Product Data**, and adding products/variations to the **Product Dependencies** field.
+2. If the ownership and/or purchase conditions are not met, products with dependencies cannot be added to the cart and a notification is displayed.
 
 == Changelog ==
 

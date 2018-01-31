@@ -69,7 +69,9 @@ The plugin allows you to select between 3 different dependency types:
 
 = 1.2.0 =
 * Feature - Introduced category-based dependencies.
-* Tweak - Tweaked notices.
+* Feature - Added custom dependency notices.
+* Feature - Added AND/OR dependency relationship. Can be activated for specific products using the 'wc_pd_dependency_relationship' filter.
+* Tweak - Tweaked default notices.
 
 = 1.1.3 =
 * Tweak - Updated description.

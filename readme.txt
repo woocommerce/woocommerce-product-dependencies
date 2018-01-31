@@ -115,5 +115,5 @@ The plugin allows you to select between 3 different dependency types:
 
 == Upgrade Notice ==
 
-= 1.1.3 =
-Added category-based dependencies.
+= 1.2.0 =
+Added category-based dependencies and custom notices.

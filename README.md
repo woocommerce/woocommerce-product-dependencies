@@ -4,7 +4,9 @@
 
 Lightweight WooCommerce plugin that allows you to restrict access to any product, depending on the ownership and/or purchase of other, required products.
 
-<img width="851" alt="screenshot-2" src="https://user-images.githubusercontent.com/1783726/35614870-2869cf80-0679-11e8-9420-e763fd813593.png">
+<p align="center">
+	<img width="851" alt="screenshot-2" src="https://user-images.githubusercontent.com/1783726/35614870-2869cf80-0679-11e8-9420-e763fd813593.png">
+</p>
 
 Features:
 
@@ -13,6 +15,8 @@ Features:
 * Support for multiple product dependencies.
 * Support for "ownership", "purchase" and "ownership/purchase" dependency types.
 
-**Important**: Requires WooCommerce 2.2+. WooCommerce 3.0+ or higher recommended.
+<p align="center">
+	<img width="770" alt="screenshot-1" src="https://user-images.githubusercontent.com/1783726/35614868-27ad448c-0679-11e8-86f1-ce6970b5490a.png">
+</p>
 
-<img width="770" alt="screenshot-1" src="https://user-images.githubusercontent.com/1783726/35614868-27ad448c-0679-11e8-86f1-ce6970b5490a.png">
+**Important**: Requires WooCommerce 2.2+. WooCommerce 3.0+ or higher recommended.

@@ -870,7 +870,7 @@ class WC_Product_Dependencies {
 					'id'          => 'dependency_notice',
 					'value'       => esc_html( $dependency_notice ),
 					'label'       => __( 'Custom notice', 'woocommerce-product-dependencies' ),
-					'description' => __( 'Notice to display.', 'woocommerce-product-dependencies' ),
+					'description' => __( 'Notice to display instead of the default one.', 'woocommerce-product-dependencies' ),
 					'desc_tip'    => true
 				) );
 

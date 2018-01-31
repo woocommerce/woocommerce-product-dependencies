@@ -15,7 +15,7 @@ Features:
 * Support for multiple product dependencies.
 * Support for "ownership", "purchase" and "ownership/purchase" dependency types.
 
-
+<br/>
 <p align="center">
 	<img width="770" alt="screenshot-1" src="https://user-images.githubusercontent.com/1783726/35614868-27ad448c-0679-11e8-86f1-ce6970b5490a.png">
 </p>

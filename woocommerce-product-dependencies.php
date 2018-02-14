@@ -4,7 +4,7 @@
 * Plugin Name: WooCommerce Product Dependencies
 * Plugin URI: http://somewherewarm.gr/
 * Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, required products.
-* Version: 1.2.0
+* Version: 1.2.1
 * Author: SomewhereWarm
 * Author URI: https://somewherewarm.gr/
 *
@@ -40,7 +40,7 @@ class WC_Product_Dependencies {
 	/**
 	 * Product Dependencies version.
 	 */
-	public $version = '1.2.0';
+	public $version = '1.2.1';
 
 	/**
 	 * 'Ownership' dependency type code.
@@ -317,8 +317,17 @@ class WC_Product_Dependencies {
 
 					} else {
 
-						$cart_item_product = $cart_item[ 'data' ];
-						$cart_item_cat_ids = $cart_item_product->get_category_ids();
+						if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
+							$cart_item_product = $cart_item[ 'data' ]->is_type( 'variation' ) ? wc_get_product( $cart_item[ 'data' ]->get_parent_id() ) : $cart_item[ 'data' ];
+							$cart_item_cat_ids = $cart_item_product->get_category_ids();
+						} else {
+							$cart_item_cat_ids = get_terms( array(
+								'taxonomy'   => 'product_cat',
+								'object_ids' => $cart_item[ 'product_id' ],
+								'fields'     => 'ids'
+							) );
+						}
+
 						$matching_cat_ids  = array_intersect( $cart_item_cat_ids, $tied_category_ids );
 
 						if ( sizeof( $matching_cat_ids ) ) {

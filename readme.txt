@@ -6,7 +6,7 @@ Requires at least: 3.8
 Tested up to: 4.9
 WC requires at least: 2.2
 WC tested up to: 3.3
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,9 @@ The plugin allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 1.2.1 =
+* Fix - Products with "Purchase"-type category dependencies cannot be added to the cart although a variation of a product that belongs to the required category has been added to the cart.
+
 = 1.2.0 =
 * Feature - Introduced category-based dependencies.
 * Feature - Added custom dependency notices.
@@ -115,5 +118,5 @@ The plugin allows you to select between 3 different dependency types:
 
 == Upgrade Notice ==
 
-= 1.2.0 =
-Added category-based dependencies and custom notices.
+= 1.2.1 =
+Fixed an issue with category-based "Purchase"-type dependencies and variations.

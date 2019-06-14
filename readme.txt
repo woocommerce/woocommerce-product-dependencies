@@ -3,10 +3,10 @@
 Contributors: SomewhereWarm, franticpsyx, jasonkytros
 Tags: woocommerce, products, dependencies, prerequisite, required, access, restrict, ownership, purchase, together
 Requires at least: 3.8
-Tested up to: 4.9
+Tested up to: 5.2
 WC requires at least: 2.2
-WC tested up to: 3.3
-Stable tag: 1.2.1
+WC tested up to: 3.6
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

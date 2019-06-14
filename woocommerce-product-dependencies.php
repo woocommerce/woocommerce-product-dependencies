@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Product Dependencies
  * Plugin URI: http://somewherewarm.gr/
  * Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, required products.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: SomewhereWarm
  * Author URI: https://somewherewarm.gr/
  *
@@ -11,10 +11,10 @@
  * Domain Path: /languages/
  *
  * Requires at least: 3.8
- * Tested up to: 4.9
+ * Tested up to: 5.2
  *
  * WC requires at least: 2.2
- * WC tested up to: 3.3
+ * WC tested up to: 3.6
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -38,7 +38,7 @@ class WC_Product_Dependencies {
 	/**
 	 * Product Dependencies version.
 	 */
-	public $version = '1.2.1';
+	public $version = '1.2.2';
 
 	/**
 	 * 'Ownership' dependency type code.
@@ -648,7 +648,7 @@ class WC_Product_Dependencies {
 	 * @param  string  $customer_email
 	 * @param  int     $user_id
 	 * @param  array   $product_ids
-	 * @return boolean
+	 * @return array
 	 */
 	private function customer_bought_products( $customer_email, $user_id, $product_ids ) {
 

@@ -1,14 +1,14 @@
-# Copyright (C) 2018 SomewhereWarm
+# Copyright (C) 2019 SomewhereWarm
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Product Dependencies 1.2.1\n"
+"Project-Id-Version: WooCommerce Product Dependencies 1.2.2\n"
 "Report-Msgid-Bugs-To: support@somewherewarm.gr\n"
-"POT-Creation-Date: 2018-02-25 12:13:50+00:00\n"
+"POT-Creation-Date: 2019-06-14 11:07:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"

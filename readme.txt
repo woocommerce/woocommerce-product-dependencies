@@ -3,10 +3,10 @@
 Contributors: SomewhereWarm, franticpsyx, jasonkytros
 Tags: woocommerce, products, dependencies, prerequisite, required, access, restrict, ownership, purchase, together
 Requires at least: 3.8
-Tested up to: 5.2
+Tested up to: 5.3
 WC requires at least: 2.2
-WC tested up to: 3.6
-Stable tag: 1.2.2
+WC tested up to: 3.9
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,12 @@ The plugin allows you to select between 3 different dependency types:
 2. If the ownership and/or purchase conditions are not met, products with dependencies cannot be added to the cart and a notification is displayed.
 
 == Changelog ==
+
+= 1.2.3 =
+* Tweak - Updated plugin headers to declare support for WC 3.9 and WP 5.3.
+
+= 1.2.2 =
+* Fix - Remove esc_html when rendering custom notices.
 
 = 1.2.1 =
 * Fix - Products with "Purchase"-type category dependencies cannot be added to the cart although a variation of a product that belongs to the required category has been added to the cart.

@@ -10,22 +10,29 @@ Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Restrict access to any WooCommerce product, depending on the ownership and/or purchase of other, required products.
+Restrict access to any WooCommerce product, depending on the ownership and/or purchase of other required products.
+
 
 == Description ==
 
-Restrict access to any WooCommerce product, depending on the ownership and/or purchase of other, required products.
+Restrict access to any WooCommerce product, depending on the ownership and/or purchase of other required products.
 
 Features:
 
-* **Conditional product access** based on the ownership and/or purchase of required products.
-* Streamlined admin interface – product dependencies are entered in a dedicated **Dependencies** tab.
-* Support for multiple product dependencies.
+* **Conditional product access** based on the ownership and/or purchase of other required products.
 * Support for "ownership", "purchase" and "ownership/purchase" dependency types.
 
 Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/somewherewarm/woocommerce-product-dependencies/).
 
 **Important**: Requires WooCommerce 2.2+. WooCommerce 3.0+ or higher recommended.
+
+Like this plugin? You'll love our WooCommerce Extensions:
+
+* [WooCommerce Product Bundles](https://woocommerce.com/products/product-bundles/)
+* [WooCommerce Composite Products](https://woocommerce.com/products/composite-products/)
+* [WooCommerce Conditional Shipping and Payments](https://woocommerce.com/products/conditional-shipping-and-payments/)
+* [WooCommerce Product Recommendations](https://woocommerce.com/products/product-recommendations/)
+* [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions)
 
 
 == Installation ==
@@ -60,10 +67,12 @@ The plugin allows you to select between 3 different dependency types:
 * **Purchase**: The product can be purchased only in combination with any of the items added to the Product Dependencies field. Ownership is not taken into account.
 * **Either**: Access is granted with ownership or purchase of any item added to the Product Dependencies field.
 
+
 == Screenshots ==
 
 1. Product dependencies can be created from the **Dependencies** tab, found under **Product Data**, and adding products/variations to the **Product Dependencies** field.
 2. If the ownership and/or purchase conditions are not met, products with dependencies cannot be added to the cart and a notification is displayed.
+
 
 == Changelog ==
 
@@ -122,7 +131,8 @@ The plugin allows you to select between 3 different dependency types:
 = 1.0 =
 * Initial release
 
+
 == Upgrade Notice ==
 
-= 1.2.1 =
-Fixed an issue with category-based "Purchase"-type dependencies and variations.
+= 1.2.3 =
+Updated plugin headers to declare support for WC 3.9 and WP 5.3.

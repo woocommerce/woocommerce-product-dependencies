@@ -15,7 +15,9 @@ Restrict access to any WooCommerce product, depending on the ownership and/or pu
 
 == Description ==
 
-Restrict access to any WooCommerce product, depending on the ownership and/or purchase of other required products.
+Looking for a way to restrict product access in WooCommerce? Don't want to set up a full-fledged [memberships](https://woocommerce.com/products/woocommerce-memberships/?aff=46147&cid=5699243) site?
+
+This tiny plugin allows you to restrict access to any WooCommerce product, depending on the ownership or purchase of other, required products.
 
 Features:
 
@@ -26,13 +28,13 @@ Developers can checkout and contribute to the source code on the plugin's [GitHu
 
 **Important**: Requires WooCommerce 2.2+. WooCommerce 3.0+ or higher recommended.
 
-Like this plugin? You'll love our WooCommerce Extensions:
+Like this plugin? You'll love our official WooCommerce Extensions:
 
-* [WooCommerce Product Bundles](https://woocommerce.com/products/product-bundles/)
-* [WooCommerce Composite Products](https://woocommerce.com/products/composite-products/)
-* [WooCommerce Conditional Shipping and Payments](https://woocommerce.com/products/conditional-shipping-and-payments/)
-* [WooCommerce Product Recommendations](https://woocommerce.com/products/product-recommendations/)
-* [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions)
+* [WooCommerce Product Bundles](https://woocommerce.com/products/product-bundles/?aff=46147&cid=5699243)
+* [WooCommerce Composite Products](https://woocommerce.com/products/composite-products/?aff=46147&cid=5699243)
+* [WooCommerce Conditional Shipping and Payments](https://woocommerce.com/products/conditional-shipping-and-payments/?aff=46147&cid=5699243)
+* [WooCommerce Product Recommendations](https://woocommerce.com/products/product-recommendations/?aff=46147&cid=5699243)
+* [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions/?aff=46147&cid=5699243)
 
 
 == Installation ==

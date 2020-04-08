@@ -5,7 +5,7 @@ Tags: woocommerce, products, dependencies, prerequisite, required, access, restr
 Requires at least: 3.8
 Tested up to: 5.3
 WC requires at least: 2.2
-WC tested up to: 3.9
+WC tested up to: 4.0
 Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

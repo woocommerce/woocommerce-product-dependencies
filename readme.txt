@@ -5,8 +5,8 @@ Tags: woocommerce, products, dependencies, prerequisite, required, access, restr
 Requires at least: 3.8
 Tested up to: 5.4
 WC requires at least: 2.2
-WC tested up to: 4.1
-Stable tag: 1.2.4
+WC tested up to: 4.2
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Restrict access to any WooCommerce product, depending on the ownership and/or pu
 
 == Description ==
 
-Looking for a way to restrict product access in WooCommerce? Don't want to set up a full-fledged [memberships](https://woocommerce.com/products/woocommerce-memberships/?aff=46147&cid=5699243) site?
+Looking for a way to restrict product access in WooCommerce? Don't want to set up a full-fledged [memberships](https://woocommerce.com/products/woocommerce-memberships/) site?
 
 This tiny plugin allows you to restrict access to any WooCommerce product, depending on the ownership or purchase of other, required products.
 
@@ -30,11 +30,11 @@ Developers can checkout and contribute to the source code on the plugin's [GitHu
 
 Like this plugin? You'll love our official WooCommerce Extensions:
 
-* [WooCommerce Product Bundles](https://woocommerce.com/products/product-bundles/?aff=46147&cid=5699243)
-* [WooCommerce Composite Products](https://woocommerce.com/products/composite-products/?aff=46147&cid=5699243)
-* [WooCommerce Conditional Shipping and Payments](https://woocommerce.com/products/conditional-shipping-and-payments/?aff=46147&cid=5699243)
-* [WooCommerce Product Recommendations](https://woocommerce.com/products/product-recommendations/?aff=46147&cid=5699243)
-* [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions/?aff=46147&cid=5699243)
+* [WooCommerce Product Bundles](https://woocommerce.com/products/product-bundles/)
+* [WooCommerce Composite Products](https://woocommerce.com/products/composite-products/)
+* [WooCommerce Conditional Shipping and Payments](https://woocommerce.com/products/conditional-shipping-and-payments/)
+* [WooCommerce Product Recommendations](https://woocommerce.com/products/product-recommendations/)
+* [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions/)
 
 
 == Installation ==
@@ -77,6 +77,9 @@ The plugin allows you to select between 3 different dependency types:
 
 
 == Changelog ==
+
+= 1.2.5 =
+* Tweak - Declared support for WooCommerce 4.2.
 
 = 1.2.4 =
 * Tweak - Declared support for WC 4.1 and WP 5.4.
@@ -139,5 +142,5 @@ The plugin allows you to select between 3 different dependency types:
 
 == Upgrade Notice ==
 
-= 1.2.4 =
-Declared support for WC 4.1 and WP 5.4.
+= 1.2.5 =
+Declared support for WooCommerce 4.2.

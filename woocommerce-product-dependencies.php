@@ -402,6 +402,11 @@ class WC_Product_Dependencies {
 			// Show notice.
 			if ( false === $result ) {
 
+				if ( ! WC()->session->has_session() ) {
+					// Generate a random customer ID.
+					WC()->session->set_customer_session_cookie( true );
+				}
+
 				if ( $dependency_notice ) {
 
 					wc_add_notice( $dependency_notice, 'error' );

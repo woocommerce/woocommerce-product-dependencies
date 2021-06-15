@@ -78,6 +78,9 @@ The plugin allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 1.2.7 =
+* Fix - Updated evaluation logic to prevent products from satisfying their own dependencies.
+
 = 1.2.6 =
 * Tweak - Declared support for WooCommerce 5.0.
 

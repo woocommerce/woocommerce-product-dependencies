@@ -3,10 +3,10 @@
 Contributors: SomewhereWarm, franticpsyx, jasonkytros
 Tags: woocommerce, products, dependencies, prerequisite, required, access, restrict, ownership, purchase, together
 Requires at least: 3.8
-Tested up to: 5.7
+Tested up to: 5.9
 WC requires at least: 2.2
-WC tested up to: 5.4
-Stable tag: 1.2.7
+WC tested up to: 6.3.1
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,9 @@ The plugin allows you to select between 3 different dependency types:
 
 
 == Changelog ==
+
+= 1.2.8 =
+* Tweak - Declared support for WooCommerce 6.3.1.
 
 = 1.2.7 =
 * Fix - Prevent products from satisfying their own dependencies.

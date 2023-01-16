@@ -22,3 +22,5 @@ Features:
 <br/>
 
 **Important**: Requires WooCommerce 2.2+. WooCommerce 3.0+ or higher recommended.
+
+**Important**: The code in this plugin is provided "as is". Support via the WordPress.org forum is provided on a **voluntary** basis only.

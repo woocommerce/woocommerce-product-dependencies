@@ -763,7 +763,7 @@ class WC_Product_Dependencies {
 		$tabs[ 'dependencies' ] = array(
 			'label'  => __( 'Dependencies', 'woocommerce-product-dependencies' ),
 			'target' => 'tied_products_data',
-			'class'  => array( 'show_if_simple', 'show_if_variable', 'show_if_bundle', 'show_if_composite', 'linked_product_options', 'show_if_booking' )
+			'class'  => array( 'show_if_simple', 'show_if_variable', 'show_if_bundle', 'show_if_composite', 'linked_product_options', 'show_if_booking', 'show_if_phive_booking' )
 		);
 
 		return $tabs;

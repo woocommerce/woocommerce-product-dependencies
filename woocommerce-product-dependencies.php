@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Product Dependencies
  * Plugin URI: https://somewherewarm.com/
  * Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, required products.
- * Version: 1.2.7
+ * Version: 1.2.8
  * Author: SomewhereWarm
  * Author URI: https://somewherewarm.com/
  *
@@ -11,10 +11,10 @@
  * Domain Path: /languages/
  *
  * Requires at least: 3.8
- * Tested up to: 5.7
+ * Tested up to: 6.3
  *
  * WC requires at least: 2.2
- * WC tested up to: 5.4
+ * WC tested up to: 8.0
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -38,7 +38,7 @@ class WC_Product_Dependencies {
 	/**
 	 * Product Dependencies version.
 	 */
-	public $version = '1.2.7';
+	public $version = '1.2.8';
 
 	/**
 	 * 'Ownership' dependency type code.
@@ -124,6 +124,9 @@ class WC_Product_Dependencies {
 		// Helper functions.
 		require_once( 'class-wc-pd-helpers.php' );
 
+		// Declare HPOS compatibility.
+		add_action( 'before_woocommerce_init', array( $this, 'declare_hpos_compatibility' ) );
+
 		// Init textdomain.
 		add_action( 'init', array( $this, 'init') );
 
@@ -168,6 +171,19 @@ class WC_Product_Dependencies {
 	 */
 	public function init() {
 		load_plugin_textdomain( 'woocommerce-product-dependencies', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	}
+
+	/**
+	 * Declare HPOS( Custom Order tables) compatibility.
+	 *
+	 */
+	public function declare_hpos_compatibility() {
+
+		if ( ! class_exists( 'Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			return;
+		}
+
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', plugin_basename( __FILE__ ), true );
 	}
 
 	/**

@@ -29,7 +29,7 @@ class WC_PD_Core_Compatibility {
 	}
 
 	/**
-	 * Returns true if the installed version of WooCommerce is 2.2 or greater.
+	 * Returns true if the installed version of WooCommerce is 8.2 or greater.
 	 *
 	 * @return boolean
 	 */

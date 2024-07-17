@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Helper functions.
  *
  * @class    WC_PD_Helpers
- * @version  1.2.0
+ * @version  2.0.0
  */
 class WC_PD_Helpers {
 
@@ -62,7 +62,7 @@ class WC_PD_Helpers {
 
 				$part_to_merge     = self::get_part_to_merge_expression( $loop, count( $products ), $relationship );
 				$product_permalink = $product->is_visible() ? $product->get_permalink() : '';
-				$product_title     = WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ? $product->get_name() : $product->get_title();
+				$product_title     = $product->get_name();
 
 				if ( $product_permalink ) {
 					$part_to_merge = sprintf( $part_to_merge, sprintf( '&quot;<a href="%1$s">%2$s</a>&quot;', esc_url( $product_permalink ), $product_title ) );
@@ -147,21 +147,7 @@ class WC_PD_Helpers {
 			return false;
 		}
 
-		if ( WC_PD_Core_Compatibility::is_wc_version_gte_2_7() ) {
-			return $product->get_formatted_name();
-		}
-
-		$title = $title ? $title : $product->get_title();
-		$sku   = $product->get_sku();
-		$id    = WC_PD_Core_Compatibility::get_id( $product );
-
-		if ( $sku ) {
-			$identifier = $sku;
-		} else {
-			$identifier = '#' . $id;
-		}
-
-		return self::format_product_title( $title, $identifier, '', WC_PD_Core_Compatibility::is_wc_version_gte_2_7() );
+		return $product->get_formatted_name();
 	}
 
 	/**

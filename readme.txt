@@ -2,11 +2,11 @@
 
 Contributors: SomewhereWarm, franticpsyx, jasonkytros
 Tags: woocommerce, products, dependencies, prerequisite, required, access, restrict, ownership, purchase, together
-Requires at least: 3.8
-Tested up to: 6.3
-WC requires at least: 2.2
-WC tested up to: 8.0
-Stable tag: 1.2.8
+Requires at least: 6.2
+Tested up to: 6.6
+WC requires at least: 8.2
+WC tested up to: 9.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,11 @@ The plugin allows you to select between 3 different dependency types:
 
 
 == Changelog ==
+
+= 2.0.0 =
+* Important - New: PHP 7.4+ is now required.
+* Important - New: WooCommerce 8.2+ is now required.
+* Important - New: WordPress 6.2+ is now required.
 
 = 1.2.8 =
 * Feature - Declared compatibility with the new High-Performance Order Tables.

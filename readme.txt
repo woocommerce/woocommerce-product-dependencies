@@ -1,7 +1,7 @@
 === WooCommerce Product Dependencies ===
 
-Contributors: SomewhereWarm, franticpsyx, jasonkytros
-Tags: woocommerce, products, dependencies, prerequisite, required, access, restrict, ownership, purchase, together
+Contributors: SomewhereWarm
+Tags: woocommerce, products, dependencies, prerequisite, restrict
 Requires at least: 6.2
 Tested up to: 6.6
 WC requires at least: 8.2

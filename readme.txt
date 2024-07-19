@@ -1,6 +1,6 @@
 === WooCommerce Product Dependencies ===
 
-Contributors: SomewhereWarm
+Contributors: automattic, woocommerce, SomewhereWarm
 Tags: woocommerce, products, dependencies, prerequisite, restrict
 Requires at least: 6.2
 Tested up to: 6.6

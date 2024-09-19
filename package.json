@@ -3,10 +3,10 @@
 	"title": "WooCommerce Product Dependencies",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/somewherewarm/woocommerce-product-dependencies.git"
+		"url": "https://github.com/woocommerce/woocommerce-product-dependencies.git"
 	},
 	"license": "GPL-3.0+",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"main": "Gruntfile.js",
 	"devDependencies": {
 		"grunt": "~1.0.1",

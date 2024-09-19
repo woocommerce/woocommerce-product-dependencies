@@ -6,7 +6,7 @@ Requires at least: 6.2
 Tested up to: 6.6
 WC requires at least: 8.2
 WC tested up to: 9.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ Features:
 * **Conditional product access** based on the ownership and/or purchase of other required products.
 * Support for "ownership", "purchase" and "ownership/purchase" dependency types.
 
-Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/somewherewarm/woocommerce-product-dependencies/).
+Developers can checkout and contribute to the source code on the plugin's [GitHub Repository](https://github.com/woocommerce/woocommerce-product-dependencies/).
 
 **Important**: Requires WooCommerce 2.2+. WooCommerce 3.0+ or higher recommended.
 
@@ -77,6 +77,9 @@ The plugin allows you to select between 3 different dependency types:
 
 
 == Changelog ==
+
+= 2.0.0 =
+* Tweak - Updated author links.
 
 = 2.0.0 =
 * Important - New: PHP 7.4+ is now required.

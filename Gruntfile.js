@@ -79,10 +79,7 @@ module.exports = function( grunt ) {
 		makepot: {
 			options: {
 				type: 'wp-plugin',
-				domainPath: 'languages',
-				potHeaders: {
-					'report-msgid-bugs-to': 'support@somewherewarm.gr'
-				}
+				domainPath: 'languages'
 			},
 			go: {
 				options: {

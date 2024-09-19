@@ -2,7 +2,7 @@
 /**
  * WC_PD_Core_Compatibility class
  *
- * @author   SomewhereWarm <sw@somewherewarm.net>
+ * @author   WooCommerce
  * @package  WooCommerce Product Dependencies
  * @since    1.1.0
  */

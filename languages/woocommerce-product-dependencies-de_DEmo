@@ -1,0 +1,216 @@
+# Copyright (C) 2024 WooCommerce
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Product Dependencies 2.0.1\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/woocommerce-product-dependencies\n"
+"POT-Creation-Date: 2024-09-19 06:41:32+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+
+#: class-wc-pd-helpers.php:36
+msgid "%s"
+msgstr "%s"
+
+#: class-wc-pd-helpers.php:38
+msgid " and %s"
+msgstr " und %s"
+
+#: class-wc-pd-helpers.php:38
+msgid " or %s"
+msgstr " oder %s"
+
+#: class-wc-pd-helpers.php:40
+msgid ", %s"
+msgstr ", %s"
+
+#: woocommerce-product-dependencies.php:81
+#: woocommerce-product-dependencies.php:90
+msgid "Foul!"
+msgstr "Autsch!"
+
+#: woocommerce-product-dependencies.php:423
+msgid "all required products"
+msgstr "alle benötigten Produkte"
+
+#: woocommerce-product-dependencies.php:424
+msgid "these products"
+msgstr "diese Produkte"
+
+#: woocommerce-product-dependencies.php:426
+msgid "a required product"
+msgstr "ein notwendiges Produkt"
+
+#: woocommerce-product-dependencies.php:438
+msgid "one or more products from the %s categories"
+msgstr "eines oder mehrere Produkte der Kategorie(n) %s"
+
+#: woocommerce-product-dependencies.php:439
+msgid "one or more products from all required categories"
+msgstr "eines oder mehr Produkte aller benötigter Kategorien"
+
+#: woocommerce-product-dependencies.php:441
+#: woocommerce-product-dependencies.php:445
+msgid "a product from the %s category"
+msgstr "ein Produkte der Kategorie %s"
+
+#: woocommerce-product-dependencies.php:442
+msgid "a qualifying product"
+msgstr "ein qualifizierendes Produkt"
+
+#: woocommerce-product-dependencies.php:453
+msgid ""
+"Access to &quot;%1$s&quot; is restricted to customers who have previously "
+"purchased %2$s."
+msgstr ""
+"Zugang zu &quot;%1$s&quot; ist beschränkt auf Kunden, die bisher "
+"%2$s gekauft haben."
+
+#: woocommerce-product-dependencies.php:455
+msgid ""
+"Access to &quot;%1$s&quot; is restricted to customers who have previously "
+"purchased %2$s. Please <a href=\"%3$s\">log in</a> to validate ownership "
+"and try again."
+msgstr ""
+"Zugang zu &quot;%1$s&quot; ist beschränkt auf Kunden, die bisher "
+"%2$s gekauft haben. Bitte "<a href=\"%3$s\">loggen Sie sich ein</a>, um den "
+"Besitz zu verifizieren und versuchen Sie es erneut."
+
+#: woocommerce-product-dependencies.php:474
+msgid "a product"
+msgid_plural "some products"
+msgstr[0] "ein Produkt"
+msgstr[1] "einige Produkte"
+
+#: woocommerce-product-dependencies.php:475
+msgid "%1$s from the %2$s category"
+msgid_plural "%1$s from the %2$s categories"
+msgstr[0] "%1$s der Kategorie %2$s"
+msgstr[1] "%1$s der Kategorien %2$s"
+
+#: woocommerce-product-dependencies.php:478
+msgid "one or more products from the %s category"
+msgid_plural "one or more products from the %s categories"
+msgstr[0] "eines oder mehrere Produkte der Kategorie %s"
+msgstr[1] "eines oder mehrere Produkte der Kategorien %s"
+
+#: woocommerce-product-dependencies.php:481
+msgid ""
+"&quot;%1$s&quot; requires purchasing %2$s. Please add %3$s to your cart and "
+"try again (you have already purchased %4$s)."
+msgstr ""
+"&quot;%1$s&quot; bedingt den Kauf von %2$s. Bitte fügen Sie %3$s ihrem Warenkorb hinzu und "
+"versuchen Sie es erneut (Sie haben bereits %4$s gekauft)."
+
+#: woocommerce-product-dependencies.php:487
+msgid ""
+"&quot;%1$s&quot; requires purchasing %2$s. To get access to this product "
+"now, please add %3$s to your cart."
+msgstr ""
+"&quot;%1$s&quot; bedingt den Kauf von %2$s. Um jetzt Zugang zu diesem Produkt "
+"zu erhalten, fügen Sie ihrem Warenkorb bitte %3$s hinzu."
+
+#: woocommerce-product-dependencies.php:494
+msgid ""
+"&quot;%1$s&quot; requires purchasing %2$s. If you have previously purchased "
+"%3$s, please <a href=\"%5$s\">log in</a> to verify ownership and try again. "
+"Alternatively, get access to &quot;%1$s&quot; now by adding %4$s to your "
+"cart."
+msgstr ""
+"&quot;%1$s&quot; bedingt den Kauf von %2$s. Wenn Sie %3$s bereits gekauft "
+"haben, <a href=\"%5$s\">loggen sie sich bitte ein</a> um den Kauf zu verifizieren. "
+"Alternative könnten Sie sofort Zugang zu &quot;%1$s&quot; zu erhalten, indem Sie %4$s "
+"Ihrem Warenkorb hinzufügen."
+
+#: woocommerce-product-dependencies.php:501
+msgid ""
+"&quot;%1$s&quot; is only available in combination with %2$s. To purchase "
+"this product, please add %3$s to your cart."
+msgstr ""
+"&quot;%1$s&quot; kann nur zusammen mit %2$s erworben werden. Um dieses Produkt "
+"zu kaufen, fügen Sie bitte %3$s ihrem Warenkorb hinzu."
+
+#: woocommerce-product-dependencies.php:697
+#: woocommerce-product-dependencies.php:709
+msgid "Select product categories&hellip;"
+msgstr "Wählen Sie die Produktkategorien&hellip"
+
+#: woocommerce-product-dependencies.php:814
+msgid "Dependency type"
+msgstr "Abhängigkeitstyp"
+
+#: woocommerce-product-dependencies.php:817
+msgid "Ownership"
+msgstr "Besitz"
+
+#: woocommerce-product-dependencies.php:818
+msgid "Purchase"
+msgstr "Kauf"
+
+#: woocommerce-product-dependencies.php:819
+msgid "Either"
+msgstr "Beides"
+
+#: woocommerce-product-dependencies.php:827
+msgid "Custom notice"
+msgstr "Personalisierte Mitteilung"
+
+#: woocommerce-product-dependencies.php:828
+msgid "Notice to display instead of the default one."
+msgstr "Gewünschte Notiz, die statt der Standardnotiz angezeigt wird."
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Product Dependencies"
+msgstr "WooCommerce Produktabhängigkeiten"
+
+#. Author URI of the plugin/theme
+msgid "https://woocommerce.com/"
+msgstr "https://woocommerce.com/"
+
+#. Description of the plugin/theme
+msgid ""
+"Restrict access to WooCommerce products, depending on the ownership and/or "
+"purchase of other, required products."
+msgstr ""
+"Beschränkt den Zugang zu WooCommerce Produkten, abhängig von Kauf und/oder "
+"Besitz anderer, erforderlicher Produkte."
+
+#. Author of the plugin/theme
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: class-wc-pd-helpers.php:166
+msgctxt "product title followed by meta and sku in parenthesis"
+msgid "%1$s &ndash; %2$s (%3$s)"
+msgstr "%1$s &ndash; %2$s (%3$s)"
+
+#: class-wc-pd-helpers.php:168
+msgctxt "sku followed by product title and meta"
+msgid "%1$s &ndash; %2$s &ndash; %3$s"
+msgstr "%1$s &ndash; %2$s &ndash; %3$s"
+
+#: class-wc-pd-helpers.php:172
+msgctxt "product title followed by sku in parenthesis"
+msgid "%1$s (%2$s)"
+msgstr "%1$s (%2$s)"
+
+#: class-wc-pd-helpers.php:174
+msgctxt "sku followed by product title"
+msgid "%1$s &ndash; %2$s"
+msgstr "%1$s &ndash; %2$s"
+
+#: class-wc-pd-helpers.php:178
+msgctxt "product title followed by meta in parenthesis"
+msgid "%1$s (%2$s)"
+msgstr "%1$s (%2$s)"
+
+#: class-wc-pd-helpers.php:180
+msgctxt "product title followed by meta"
+msgid "%1$s &ndash; %2$s"
+msgstr "%1$s &ndash; %2$s"

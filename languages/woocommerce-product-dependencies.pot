@@ -1,15 +1,15 @@
-# Copyright (C) 2024 WooCommerce
+# Copyright (C) 2026 WooCommerce
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Product Dependencies 2.0.1\n"
+"Project-Id-Version: WooCommerce Product Dependencies 2.0.2\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/woocommerce-product-dependencies\n"
-"POT-Creation-Date: 2024-09-19 06:41:32+00:00\n"
+"POT-Creation-Date: 2026-11-07 16:02:44+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2026-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
@@ -30,6 +30,10 @@ msgstr ""
 msgid ", %s"
 msgstr ""
 
+#: class-wc-pd-helpers.php:74 woocommerce-product-dependencies.php:426
+msgid "a required product"
+msgstr ""
+
 #: woocommerce-product-dependencies.php:81
 #: woocommerce-product-dependencies.php:90
 msgid "Foul!"
@@ -41,10 +45,6 @@ msgstr ""
 
 #: woocommerce-product-dependencies.php:424
 msgid "these products"
-msgstr ""
-
-#: woocommerce-product-dependencies.php:426
-msgid "a required product"
 msgstr ""
 
 #: woocommerce-product-dependencies.php:438
@@ -195,32 +195,32 @@ msgstr ""
 msgid "WooCommerce"
 msgstr ""
 
-#: class-wc-pd-helpers.php:166
+#: class-wc-pd-helpers.php:175
 msgctxt "product title followed by meta and sku in parenthesis"
 msgid "%1$s &ndash; %2$s (%3$s)"
 msgstr ""
 
-#: class-wc-pd-helpers.php:168
+#: class-wc-pd-helpers.php:177
 msgctxt "sku followed by product title and meta"
 msgid "%1$s &ndash; %2$s &ndash; %3$s"
 msgstr ""
 
-#: class-wc-pd-helpers.php:172
+#: class-wc-pd-helpers.php:181
 msgctxt "product title followed by sku in parenthesis"
 msgid "%1$s (%2$s)"
 msgstr ""
 
-#: class-wc-pd-helpers.php:174
+#: class-wc-pd-helpers.php:183
 msgctxt "sku followed by product title"
 msgid "%1$s &ndash; %2$s"
 msgstr ""
 
-#: class-wc-pd-helpers.php:178
+#: class-wc-pd-helpers.php:187
 msgctxt "product title followed by meta in parenthesis"
 msgid "%1$s (%2$s)"
 msgstr ""
 
-#: class-wc-pd-helpers.php:180
+#: class-wc-pd-helpers.php:189
 msgctxt "product title followed by meta"
 msgid "%1$s &ndash; %2$s"
 msgstr ""

@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Product Dependencies
  * Plugin URI: https://woocommerce.com/
  * Description: Restrict access to WooCommerce products, depending on the ownership and/or purchase of other, required products.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Author: WooCommerce
  * Author URI: https://woocommerce.com/
  *
@@ -38,7 +38,7 @@ class WC_Product_Dependencies {
 	/**
 	 * Product Dependencies version.
 	 */
-	public $version = '2.0.1';
+	public $version = '2.0.2';
 
 	/**
 	 * 'Ownership' dependency type code.

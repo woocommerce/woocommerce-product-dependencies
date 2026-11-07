@@ -60,9 +60,18 @@ class WC_PD_Helpers {
 
 			foreach ( $products as $product_id => $product ) {
 
-				$part_to_merge     = self::get_part_to_merge_expression( $loop, count( $products ), $relationship );
-				$product_permalink = $product->is_visible() ? $product->get_permalink() : '';
-				$product_title     = $product->get_name();
+				$part_to_merge = self::get_part_to_merge_expression( $loop, count( $products ), $relationship );
+
+				if ( method_exists( $product, 'is_viewable' ) ) {
+					$product_viewable = $product->is_viewable();
+				} else {
+					$product_parent_id = $product->get_parent_id();
+					$product_viewable  = ( 'publish' === $product->get_status() || current_user_can( 'edit_post', $product->get_id() ) )
+						&& ( ! $product_parent_id || 'publish' === get_post_status( $product_parent_id ) || current_user_can( 'edit_post', $product_parent_id ) );
+				}
+
+				$product_permalink = $product_viewable && $product->is_visible() ? $product->get_permalink() : '';
+				$product_title     = $product_viewable ? $product->get_name() : __( 'a required product', 'woocommerce-product-dependencies' );
 
 				if ( $product_permalink ) {
 					$part_to_merge = sprintf( $part_to_merge, sprintf( '&quot;<a href="%1$s">%2$s</a>&quot;', esc_url( $product_permalink ), $product_title ) );

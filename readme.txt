@@ -78,6 +78,9 @@ The plugin allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 2.0.2 =
+* Fix - Prevent unpublished dependency names from appearing in customer notices.
+
 = 2.0.0 =
 * Tweak - Updated author links.
 

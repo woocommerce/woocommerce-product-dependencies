@@ -617,7 +617,9 @@ class WC_Product_Dependencies {
 	}
 
 	/**
-	 * Re-implementation of 'wc_customer_bought_product' with support for array input.
+	 * Returns the subset of product IDs that a customer has bought.
+	 *
+	 * Uses 'wc_customer_bought_product', which supports both HPOS and legacy order storage.
 	 *
 	 * @since  1.2.0
 	 *
@@ -628,58 +630,21 @@ class WC_Product_Dependencies {
 	 */
 	private function customer_bought_products( $customer_email, $user_id, $product_ids ) {
 
-		global $wpdb;
-
 		$results = apply_filters( 'wc_pd_pre_customer_bought_products', null, $customer_email, $user_id, $product_ids );
 
 		if ( null !== $results ) {
 			return $results;
 		}
 
-		$transient_name = 'wc_cbp_' . md5( $customer_email . $user_id . WC_Cache_Helper::get_transient_version( 'orders' ) );
+		$results = array();
 
-		if ( false === ( $results = get_transient( $transient_name ) ) ) {
-
-			$customer_data = array( $user_id );
-
-			if ( $user_id ) {
-
-				$user = get_user_by( 'id', $user_id );
-
-				if ( isset( $user->user_email ) ) {
-					$customer_data[] = $user->user_email;
-				}
+		foreach ( $product_ids as $product_id ) {
+			if ( wc_customer_bought_product( $customer_email, $user_id, $product_id ) ) {
+				$results[] = $product_id;
 			}
-
-			if ( is_email( $customer_email ) ) {
-				$customer_data[] = $customer_email;
-			}
-
-			$customer_data = array_map( 'esc_sql', array_filter( array_unique( $customer_data ) ) );
-			$statuses      = array_map( 'esc_sql', wc_get_is_paid_statuses() );
-
-			if ( sizeof( $customer_data ) == 0 ) {
-				return false;
-			}
-
-			$results = $wpdb->get_col( "
-				SELECT im.meta_value FROM {$wpdb->posts} AS p
-				INNER JOIN {$wpdb->postmeta} AS pm ON p.ID = pm.post_id
-				INNER JOIN {$wpdb->prefix}woocommerce_order_items AS i ON p.ID = i.order_id
-				INNER JOIN {$wpdb->prefix}woocommerce_order_itemmeta AS im ON i.order_item_id = im.order_item_id
-				WHERE p.post_status IN ( 'wc-" . implode( "','wc-", $statuses ) . "' )
-				AND pm.meta_key IN ( '_billing_email', '_customer_user' )
-				AND im.meta_key IN ( '_product_id', '_variation_id' )
-				AND im.meta_value != 0
-				AND pm.meta_value IN ( '" . implode( "','", $customer_data ) . "' )
-			" );
-
-			$results = array_map( 'absint', $results );
-
-			set_transient( $transient_name, $results, DAY_IN_SECONDS * 30 );
 		}
 
-		return array_intersect( $results, $product_ids );
+		return $results;
 	}
 
 	/*

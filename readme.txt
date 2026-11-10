@@ -78,6 +78,9 @@ The plugin allows you to select between 3 different dependency types:
 
 == Changelog ==
 
+= 2.0.3 =
+* Fix - Ownership dependencies now recognize past purchases on stores using High-Performance Order Storage (HPOS).
+
 = 2.0.2 =
 * Fix - Prevent unpublished dependency names from appearing in customer notices.
 

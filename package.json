@@ -9,7 +9,7 @@
 	"version": "2.0.3",
 	"main": "Gruntfile.js",
 	"devDependencies": {
-		"grunt": "~1.0.1",
+		"grunt": "^1.6.3",
 		"grunt-checktextdomain": "~1.0.0",
 		"grunt-contrib-jshint": "~1.1.0",
 		"grunt-contrib-uglify": "~3.0.0",
@@ -17,7 +17,7 @@
 		"grunt-wp-i18n": "~0.5.4"
 	},
 	"engines": {
-		"node": ">=6.9.4",
+		"node": ">=24",
 		"npm": ">=1.1.0"
 	}
 }
